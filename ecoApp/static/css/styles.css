@@ -1,0 +1,37 @@
+body { 
+    background-image: url('../assets/img/homepageImage2.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+} 
+
+.navbar-color {
+    background-image: url('../assets/img/navBarImage.jpg');
+}
+
+.title-style{
+    font-weight: bold;
+    font-size: large;
+}
+
+.centered-title h1 {
+    text-align: center;
+    font-size: 50px;
+    color: #2e6c2596;
+    margin-top: 50px; 
+}
+
+.aboutus-container {
+    padding: 20px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+.aboutus-container h2 {
+    text-align: center;
+}
+
+
