@@ -4,7 +4,7 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="aboutus-container">
+        <div class="loginRegister-container">
             <h5 class="card-header">Login</h5>
             <div class="card-body">
                 {% if form.errors %}
@@ -13,19 +13,20 @@
                     </div>
                 {% endif %}
 
-                <form id="form-login" method="post" action="">
+                <form id="form-login" method="post" action="" class="p-3">
                     {% csrf_token %}
-
-                    <div class="w450" id="username">
+                    <div class="form-group mb-3">
+                        <label for="id_username">Username</label>
                         {{ form.username }}
                     </div>
-                    <div class="w450" id="password">
+                    <div class="form-group mb-3">
+                        <label for="id_password">Password</label>
                         {{ form.password }}
                     </div>
-                    <button id="btn-registrar" class="button_large">Entrar</button>
-                    <div class="clearfix"></div>
+                    <button type="submit" id="btn-registrar" class="btn btn-outline-success">Entrar</button>
                 </form>
                 
+                <!-- <a class="btn btn-outline-success" type="submit" href="{% url 'login' %}">Login</a> -->
             </div>
         </div>
     </div>
