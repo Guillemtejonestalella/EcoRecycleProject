@@ -16,11 +16,11 @@
                 <form id="form-login" method="post" action="" class="p-3">
                     {% csrf_token %}
                     <div class="form-group mb-3">
-                        <label for="id_username">Username</label>
+                        <label for="id_username">Username</label><br>
                         {{ form.username }}
                     </div>
                     <div class="form-group mb-3">
-                        <label for="id_password">Password</label>
+                        <label for="id_password">Password</label><br>
                         {{ form.password }}
                     </div>
                     <button type="submit" id="btn-registrar" class="btn btn-outline-success">Entrar</button>
