@@ -24,8 +24,9 @@ body {
 }
 
 .aboutus-container {
+    max-width: 700px;
     padding: 20px; 
-    border-radius: 15px; 
+    border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     margin-top: 20px;
     background-color: rgba(255, 255, 255, 0.8); 
@@ -36,8 +37,9 @@ body {
 }
 
 .loginRegister-container {
+    
     padding: 20px; 
-    border-radius: 15px; 
+    border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     margin-top: 70px;
     background-color: rgba(255, 255, 255, 0.8); 
