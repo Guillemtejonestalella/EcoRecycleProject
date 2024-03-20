@@ -1,5 +1,28 @@
+
+@keyframes fade-up {
+    0%{
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+@keyframes fade-up-title {
+    0%{
+        opacity: 0;
+        transform: translateY(70px) scale(0.9);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+
 body { 
-    background-image: url('../assets/img/homepageImage2.jpeg');
+    background-image: url('../assets/img/homepageImage2.jpeg'); 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -7,16 +30,18 @@ body {
     margin: 0;
 } 
 
+
 .navbar-color {
     background-image: url('../assets/img/navBarImage.jpg');
 }
 
-.title-style{
+.title-style{    
     font-weight: bold;
     font-size: large;
 }
 
-.centered-title h1 {
+.centered-title h1 {    
+    animation: fade-up-title 2s;
     text-align: center;
     font-size: 50px;
     color: #2e6c2596;
@@ -24,6 +49,7 @@ body {
 }
 
 .aboutus-container {
+    animation: fade-up 0.7s;
     max-width: 700px;
     padding: 20px; 
     border-radius: 8px; 
@@ -37,7 +63,7 @@ body {
 }
 
 .loginRegister-container {
-    
+    animation: fade-up 0.7s;    
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
