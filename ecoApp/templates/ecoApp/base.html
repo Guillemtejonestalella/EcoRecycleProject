@@ -41,11 +41,21 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> 
                 <button class="btn btn-outline-success" type="submit">Search</button>                      
               </form>
-                           
-              <form method="post" action="{% url 'logout' %}" class="ms-2">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-success">logout</button>
-              </form>
+                
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  IconUser
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#"> <form method="post" action="{% url 'logout' %}" class="ms-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-success">logout</button>
+                    </form></a></li>
+
+                  
+                </ul>
+              </div>
+             
               
             {% else %}
               <a class="btn btn-outline-success" type="submit" href="{% url 'login' %}">Login</a>
