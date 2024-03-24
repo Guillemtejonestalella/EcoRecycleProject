@@ -33,6 +33,7 @@ body {
 
 
 .navbar-color {
+    /* background-color:#95a77f !important; */
     background-image: url('../assets/img/navBarImage.jpg');
 }
 

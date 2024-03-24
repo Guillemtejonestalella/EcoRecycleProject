@@ -14,6 +14,9 @@ def aboutus(request):
 def login(request):
     return render(request, 'registration/login.html')
 
+def profile(request):
+    return render(request, 'ecoAPp/profile.html')
+
 def register(request):
     data = {
         'form': CustomUserCreationForm()   
