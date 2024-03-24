@@ -9,3 +9,4 @@ class CustomUserCreationForm(UserCreationForm): # classe personalitzada que here
     class Meta:  #classe que permet modificar el form per tal que demani els camps "fields" especificats, que es troven a model=User
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+

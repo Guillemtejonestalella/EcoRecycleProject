@@ -33,3 +33,7 @@ def register(request):
 @login_required
 def products(request):
     return render(request, 'ecoApp/products.html')
+
+
+
+
