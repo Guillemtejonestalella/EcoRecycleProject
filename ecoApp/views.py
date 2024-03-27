@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 # Create your views here.
 
@@ -13,9 +14,6 @@ def aboutus(request):
 
 def login(request):
     return render(request, 'registration/login.html')
-
-def profile(request):
-    return render(request, 'ecoAPp/profile.html')
 
 def register(request):
     data = {
@@ -31,6 +29,17 @@ def register(request):
     return render(request, 'registration/register.html', data)
 
 @login_required
+def profile(request):   
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Changes have been saved!')            
+    else:
+        form = CustomUserChangeForm(instance=request.user)    
+    return render(request, 'ecoApp/profile.html', {'form': form})
+
+
 def products(request):
     return render(request, 'ecoApp/products.html')
 
