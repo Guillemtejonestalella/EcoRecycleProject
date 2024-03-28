@@ -8,6 +8,8 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('products', views.products, name='products'),
     path('profile', views.profile, name='profile'),
+    path('passwordChange', views.PasswordChangeView.as_view(template_name = "registration/passwordChange.html"), name='passwordChange'),
+    path('password_succes', views.password_succes, name='passwordChangeSuccess')
 
 
 ]

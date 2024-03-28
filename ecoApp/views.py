@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomUserChangePasswordForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 
@@ -42,6 +45,15 @@ def profile(request):
 
 def products(request):
     return render(request, 'ecoApp/products.html')
+
+
+class PasswordChangeView(PasswordChangeView):
+    form_class = CustomUserChangePasswordForm
+    success_url = reverse_lazy('passwordChangeSuccess')
+   
+
+def password_succes(request):
+    return render(request, "registration/passwordChangeSuccess.html ")
 
 
 
