@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.views import generic
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here.
@@ -54,6 +57,12 @@ class PasswordChangeView(PasswordChangeView):
 
 def password_succes(request):
     return render(request, "registration/passwordChangeSuccess.html ")
+
+class delete_user(SuccessMessageMixin, generic.DeleteView):
+    model = User
+    template_name = 'registration/deleteUserConfirm.html'
+    # success_message = "User has been deleted!"
+    success_url = reverse_lazy('login')
 
 
 
