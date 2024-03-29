@@ -2,10 +2,49 @@
 
 {% block content %}
 
-<div class="container-sm aboutus-container">
-    <h2>About EcoRecycle</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu augue ut lectus arcu bibendum at varius. Suspendisse faucibus interdum posuere lorem ipsum dolor sit. Semper eget duis at tellus at urna condimentum mattis pellentesque. Maecenas accumsan lacus vel facilisis. At elementum eu facilisis sed odio. Placerat vestibulum lectus mauris ultrices. Vitae aliquet nec ullamcorper sit amet risus nullam eget felis. Bibendum ut tristique et egestas quis. Congue eu consequat ac felis donec et odio pellentesque diam. Varius quam quisque id diam vel quam elementum pulvinar etiam. Neque egestas congue quisque egestas diam in arcu. Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat. Eget nunc lobortis mattis aliquam faucibus. Commodo ullamcorper a lacus vestibulum sed arcu non. Sodales neque sodales ut etiam sit amet. Sapien nec sagittis aliquam malesuada bibendum. Nam aliquam sem et tortor consequat id. At urna condimentum mattis pellentesque. Egestas congue quisque egestas diam in arcu cursus.
+<div class="container-sm aboutus-container" style="text-align: justify;">
+    <h2>About EcoRecycle</h2>    
+    <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panel1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <strong>What is EcoRecycle?</strong>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <p>The main objective of my project is to create a digital platform where users can recycle their broken or outdated items, including old appliances, cardboard materials, metals, furniture, plastic articles, and more, thereby actively contributing to recycling initiatives. This goal is accomplished through the development of an innovative web platform that simplifies recycling processes and advocates for environmental sustainability.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panel1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              <strong>What we offer?</strong>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <p>Our platform provides users with the flexibility to designate the items they intend to recycle, granting them the option to either schedule a home pickup service or personally drop off the items at a designated collection center. To incentivize engagement in recycling endeavors, participants will earn monetary rewards in the form of points, thereby fostering their dedication to recycling, promoting environmental awareness, and bolstering support for the circular economy.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panel1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <strong>Thank you!</strong>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <p>
+                    By becoming part of our platform, users not only play a vital role in safeguarding our planet by ensuring the proper recycling of their unwanted items but also participate in a collective endeavor that prioritizes sustainability and environmental responsibility. Together, we have the power to make a substantial impact on preserving our environment for future generations.</p> 
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
+
 
 
 {% endblock %}

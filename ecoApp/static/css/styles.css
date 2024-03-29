@@ -20,7 +20,6 @@
     }
 }
 
-
 body { 
     background-image: url('../assets/img/homepageImage2.jpeg'); 
     background-size: cover;
@@ -28,9 +27,9 @@ body {
     background-position: center;
     background-attachment: fixed;
     min-height: 100vh;
-    margin: 0;
+    margin: 0;  
+    overflow-x: hidden;   
 } 
-
 
 .navbar-color {
     /* background-color:#95a77f !important; */
@@ -52,7 +51,7 @@ body {
 
 .aboutus-container {
     animation: fade-up 0.7s;
-    max-width: 700px;
+    max-width: 1000px;
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
@@ -72,6 +71,13 @@ body {
     margin-top: 70px;
     background-color: rgba(255, 255, 255, 0.8); 
 }
+
+#panel1 .accordion-button {
+    background-color: #becf9bdb !important;    
+}
+
+
+
 
 
 
