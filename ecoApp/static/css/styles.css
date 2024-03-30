@@ -25,10 +25,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
+    background-attachment: fixed;    
     margin: 0;  
-    overflow-x: hidden;   
+    overflow-x: hidden;  
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 } 
 
 .navbar-color {
@@ -76,6 +78,12 @@ body {
     background-color: #becf9bdb !important;    
 }
 
+.footer{
+    background-color: rgb(23, 46, 11);
+    margin-top: auto; 
+    padding-top: 20px;
+    color: whitesmoke;
+}
 
 
 
