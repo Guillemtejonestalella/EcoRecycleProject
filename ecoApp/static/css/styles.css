@@ -20,6 +20,7 @@
     }
 }
 
+
 body { 
     background-image: url('../assets/img/homepage4.jpg'); 
     background-size: cover;
@@ -61,12 +62,14 @@ body {
 
 .home-cards{
     display: flex;
-    justify-content: center;    
+    justify-content: center;   
+    
 }
 
 .home-cards .card {
     margin: 0 10px;
-    animation: fade-up-title 4s;    
+    animation: fade-up-title 3s; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);    
 }
 
 .home-cards .card .card-body{
@@ -110,6 +113,37 @@ body {
 .body-class{
     margin-bottom: 40px;
 }
+
+.initial-content h2{
+    animation: fade-up 0.7s; 
+    padding-top: 30px;
+    padding-left: 30px;
+}
+.welcome-user{
+    animation: fade-up 0.7s; 
+    padding-bottom: 10px;
+    padding-left: 30px;
+}
+.products-div{
+    animation: fade-up 0.7s; 
+    padding: 30px;
+}
+
+.col-2 {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 100px; 
+    height: 25vh;    
+    background-color: rgb(191 209 159) !important;
+    padding: 30px;
+    border-radius: 10px;
+     
+}
+
+
+
+
+
 
 
 

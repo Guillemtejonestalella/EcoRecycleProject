@@ -62,7 +62,7 @@ class delete_user(SuccessMessageMixin, generic.DeleteView):
     model = User
     template_name = 'registration/deleteUserConfirm.html'
     # success_message = "User has been deleted!"
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('index')
 
 
 
