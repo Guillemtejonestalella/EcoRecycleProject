@@ -47,7 +47,7 @@ body {
     animation: fade-up-title 1s;
     text-align: center;
     font-size: 50px;
-    color: #2e6c2596;
+    color: #214d1b96;
     margin-top: 100px; 
 }
 
@@ -61,12 +61,16 @@ body {
 
 .home-cards{
     display: flex;
-    justify-content: center;
+    justify-content: center;    
 }
 
 .home-cards .card {
     margin: 0 10px;
-    animation: fade-up-title 4s;
+    animation: fade-up-title 4s;    
+}
+
+.home-cards .card .card-body{
+    text-align: center;
 }
 
 .aboutus-container {
