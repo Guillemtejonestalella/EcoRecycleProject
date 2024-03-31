@@ -133,10 +133,12 @@ body {
     position: -webkit-sticky; 
     position: sticky;
     top: 100px; 
-    height: 25vh;    
-    background-color: rgb(191 209 159) !important;
-    padding: 30px;
-    border-radius: 10px;
+    height: 30vh;    
+    /* background-color: rgb(191 209 159) !important; */
+    /* padding: 30px; */
+    border-radius: 0px;
+    
+    
      
 }
 
