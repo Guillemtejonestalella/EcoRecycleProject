@@ -64,14 +64,6 @@ body {
     margin-top: 100px; 
 }
 
-.web-slogan{
-    color: #2e6c2596;
-    font-size: 25px;
-    animation: fade-up-title 1s;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
 .home-cards{
     display: flex;
     justify-content: center;   
@@ -161,6 +153,43 @@ body {
     animation-name: show;
     animation-range: entry 25% cover 50%;
 }
+
+
+.web-slogan {
+    font-size: 25px;
+    animation: fade-up-title 1s;
+    color: #3e903196;
+    display: flex;
+    justify-content: center;   
+    text-align: center;   
+    margin-bottom: 90px;
+    margin-top: 40px;
+} 
+
+.typing-text {
+    animation: typing 2.5s steps(35), transparent .5s step-end infinite alternate;
+    width: 36.1em;
+    white-space: nowrap;
+    overflow: hidden;    
+    border-right: 3px solid;
+    /* Aquí no se define una width específica para .typing-text porque se espera que se expanda según el contenido del texto. */
+}
+
+@keyframes typing{
+    from{
+        width: 0px;
+    }    
+}
+
+@keyframes transparent{
+    50%{
+        border-color: transparent;
+    }    
+}
+
+
+
+
 
 
 
