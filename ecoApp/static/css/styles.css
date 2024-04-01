@@ -44,7 +44,6 @@
     }    
 }
 
-
 body { 
     background-image: url('../assets/img/homepage4.jpg'); 
     background-size: cover;
@@ -59,22 +58,24 @@ body {
 } 
 
 .navbar-color {
-    background-color:#769767 !important; 
+    background-color:#7e9772 !important; 
     /* background-image: url('../assets/img/navBarImage.jpg'); */    
 }
 
-.navbar-color a {    
+.navbar-color a:not(.dropdown-item) {    
     position: relative;
     margin-left: 20px;
     color: white;
     font-size: 20px;
+    
 }
 
-.nav-item a:hover{
+.nav-item a::not(.dropdown-item):hover{
     color: white !important;
+    
 }
 
-.navbar-color a::before{
+.navbar-color a:not(.dropdown-item)::before{
     content: '';
     position: absolute;
     top: 80%;
@@ -86,14 +87,13 @@ body {
     transition: .3s;
 }
 
-.navbar-color a:hover::before{
+.navbar-color a:not(.dropdown-item):hover::before{
     width: 100%;
     color: white;
 }
 
-.title-style{    
-    font-weight: bold;
-    font-size: large;
+.title-style{        
+    font-size: 30px !important;
     color: #769767;
 }
 
@@ -163,7 +163,10 @@ body {
     animation: fade-up 0.7s; 
     padding-top: 30px;
     padding-left: 30px;
+    color: #769767;
 }
+
+
 .welcome-user{
     animation: fade-up 0.7s; 
     padding-bottom: 10px;
@@ -209,6 +212,10 @@ body {
     white-space: nowrap;
     overflow: hidden;    
     border-right: 3px solid;   
+}
+
+.shadow{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
 
