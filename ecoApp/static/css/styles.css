@@ -32,6 +32,18 @@
     }
 }
 
+@keyframes typing{
+    from{
+        width: 0px;
+    }    
+}
+
+@keyframes transparent{
+    50%{
+        border-color: transparent;
+    }    
+}
+
 
 body { 
     background-image: url('../assets/img/homepage4.jpg'); 
@@ -47,13 +59,42 @@ body {
 } 
 
 .navbar-color {
-    /* background-color:#95a77f !important; */
-    background-image: url('../assets/img/navBarImage.jpg');
+    background-color:#769767 !important; 
+    /* background-image: url('../assets/img/navBarImage.jpg'); */    
+}
+
+.navbar-color a {    
+    position: relative;
+    margin-left: 20px;
+    color: white;
+    font-size: 20px;
+}
+
+.nav-item a:hover{
+    color: white !important;
+}
+
+.navbar-color a::before{
+    content: '';
+    position: absolute;
+    top: 80%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: rgb(255, 255, 255);
+    color: white;
+    transition: .3s;
+}
+
+.navbar-color a:hover::before{
+    width: 100%;
+    color: white;
 }
 
 .title-style{    
     font-weight: bold;
     font-size: large;
+    color: #769767;
 }
 
 .centered-title h1 {    
@@ -66,8 +107,7 @@ body {
 
 .home-cards{
     display: flex;
-    justify-content: center;   
-    
+    justify-content: center;       
 }
 
 .home-cards .card {
@@ -89,6 +129,7 @@ body {
     margin-top: 70px;
     background-color: rgba(255, 255, 255, 0.8); 
 }
+
 .aboutus-container h2 {
     color: #2e6c2596;
     text-align: center;
@@ -99,7 +140,7 @@ body {
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    margin-top: 70px;
+    margin-top: 100px;
     background-color: rgba(255, 255, 255, 0.8); 
 }
 
@@ -140,10 +181,7 @@ body {
     height: 30vh;    
     /* background-color: rgb(191 209 159) !important; */
     /* padding: 30px; */
-    border-radius: 0px;
-    
-    
-     
+    border-radius: 0px;   
 }
 
 .col{
@@ -153,7 +191,6 @@ body {
     animation-name: show;
     animation-range: entry 25% cover 50%;
 }
-
 
 .web-slogan {
     font-size: 25px;
@@ -171,21 +208,10 @@ body {
     width: 36.1em;
     white-space: nowrap;
     overflow: hidden;    
-    border-right: 3px solid;
-    /* Aquí no se define una width específica para .typing-text porque se espera que se expanda según el contenido del texto. */
+    border-right: 3px solid;   
 }
 
-@keyframes typing{
-    from{
-        width: 0px;
-    }    
-}
 
-@keyframes transparent{
-    50%{
-        border-color: transparent;
-    }    
-}
 
 
 
