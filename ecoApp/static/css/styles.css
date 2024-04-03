@@ -87,6 +87,18 @@ body {
     transition: .3s;
 }
 
+.account-name h4{
+    color: white !important;
+    font-weight: 100;
+    align-items: center;
+    padding-right: 20px;
+    
+}
+
+.progress{
+    margin: 20px;
+}
+
 .navbar-color a:not(.dropdown-item):hover::before{
     width: 100%;
     color: white;
@@ -103,6 +115,7 @@ body {
     font-size: 50px;
     color: #214d1b96;
     margin-top: 100px; 
+    
 }
 
 .home-cards{
@@ -198,7 +211,7 @@ body {
 .web-slogan {
     font-size: 25px;
     animation: fade-up-title 1s;
-    color: #3e903196;
+    color: #20491ac4;
     display: flex;
     justify-content: center;   
     text-align: center;   
@@ -215,6 +228,7 @@ body {
 }
 
 .shadow{
+    background-color: rgba(127, 165, 98, 0.89) !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 

@@ -7,8 +7,10 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="loginRegister-container">
+            
             <h5 class="card-header">Login</h5>
-            <div class="card-body">   
+            
+            <div class="card-body ">   
                 <form id="form-login" method="post" action="" class="p-3">
                     {% csrf_token %}
                     {{ form | crispy }}                    
