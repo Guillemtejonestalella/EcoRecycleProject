@@ -4,13 +4,14 @@
 
 {% load crispy_forms_tags %}
 
+
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="loginRegister-container">
             <h5 class="card-header">Register</h5>
-            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 25%">25%</div>
-            </div>
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" id="progress-bar" style="width: 0%"></div>
+              </div>
             <div class="card-body"> 
                 <form id="form-login" method="post" action="" class="p-3">
                     {% csrf_token %}
@@ -21,5 +22,27 @@
         </div>
     </div>
 </div> 
+
+<!-- barra animada para registro de cuenta -->
+<script>
+    $(document).ready(function() {
+        var totalFields = $('#form-login input').length;
+        var filledFields = 0;
+        var progressBar = $('#progress-bar');
+    
+        function updateProgressBar() {
+            var percentage = Math.round((filledFields / totalFields) * 100);
+            progressBar.width(percentage + '%');
+            progressBar.text(percentage + '%');
+        }
+    
+        $('#form-login input').on('input', function() {           
+            filledFields = $('#form-login input').filter(function() {
+                return $(this).val().trim().length > 0;
+            }).length;    
+            updateProgressBar();
+        });
+    });
+</script>
     
 {% endblock %}

@@ -87,16 +87,23 @@ body {
     transition: .3s;
 }
 
+
+
 .account-name h4{
     color: white !important;
     font-weight: 100;
     align-items: center;
     padding-right: 20px;
+    font-size: 20px;
     
 }
 
 .progress{
     margin: 20px;
+}
+
+.progress-bar{
+    background-color: rgba(86, 111, 73, 0.726);
 }
 
 .navbar-color a:not(.dropdown-item):hover::before{
