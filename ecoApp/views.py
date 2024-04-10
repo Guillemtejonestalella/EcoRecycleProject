@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
+from ecoApp.models import Category, Item
 
 
 # Create your views here.
@@ -47,7 +48,9 @@ def profile(request):
 
 
 def products(request):
-    return render(request, 'ecoApp/products.html')
+    categories = Category.objects.all()   
+    items = Item.objects.all()
+    return render(request, 'ecoApp/products.html', {"categories": categories, "items":items})
 
 
 class PasswordChangeView(PasswordChangeView):
