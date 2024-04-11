@@ -9,7 +9,7 @@
     
     {% if request.user.is_authenticated %}
         <div class="welcome-user">
-            <h3>Hello {{user}}, now you have {{ user.profile.ProfilePoints }} points ! </h3>
+            <h3>Hello {{user}}, you have {{ user.profile.ProfilePoints }} points ! </h3>
         </div>
     {% else %}
         <div class="welcome-user">
