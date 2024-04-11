@@ -2,12 +2,14 @@
 
 {% block content %}
 
+{% load static %}
+
 <div class="initial-content" style="margin-top: 60px;"> 
     <h2>PRODUCTS</h2>
     
     {% if request.user.is_authenticated %}
         <div class="welcome-user">
-            <h3>Hello {{user}} </h3>
+            <h3>Hello {{user}}, now you have {{ user.profile.ProfilePoints }} points ! </h3>
         </div>
     {% else %}
         <div class="welcome-user">
@@ -24,29 +26,52 @@
               Menu
             </button>
             {% for element in categories %}  <!--Mostra totes les categories que estàn guardades a la BD en el menu lateral-->
-              <button type="button" class="list-group-item list-group-item-action">{{ element }}</button>  
+              <button type="button" class="list-group-item list-group-item-action">{{ element }}</button>    
             {% endfor %}                      
           </div>             
-        </div>
+        </div>       
 
         <div class="col-10">
           <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for element in items %}    <!--Mostra tots els items que estan guardats a la BD -->
+              
               <div class="col">
-                <div class="card h-100">
-                  <img src="..." class="card-img-top" alt="...">
+                <div class="card h-100">                  
+                  <img src="{{element.ItemImage.url}}" class="card-img-top" alt="..."> 
+                  
+                    
                   <div class="card-body">
                     <h5 class="card-title">{{ element }}</h5>
-                    <p class="card-text">texto de prueba</p>
+                    <p class="card-text">{{ element.ItemDescription }}</p>
                   </div>
                 </div>
-              </div>                          
+              </div>     
+                                 
             {% endfor %}
           </div>
         </div>   
 
-      </div>  
 
+        <style>
+          .card {
+            display: flex;
+            flex-direction: column;
+            height: 100%; 
+          }        
+          .card-image-container {
+            flex: 1; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }        
+          .card-img-top {
+            width: 200px;
+            height: 200px; 
+            object-fit: cover; 
+            margin: auto; 
+          }
+        </style>
+      </div>  
 </div>
 
 
