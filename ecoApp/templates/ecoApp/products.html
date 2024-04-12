@@ -26,7 +26,8 @@
               Menu
             </button>
             {% for element in categories %}  <!--Mostra totes les categories que estàn guardades a la BD en el menu lateral-->
-              <button type="button" class="list-group-item list-group-item-action">{{ element }}</button>    
+              <button type="button" class="list-group-item list-group-item-action">{{ element }}</button>                
+              <!-- <img src="{{ element.CategoryImage.url }}" class="card-img-top" alt="..."> -->
             {% endfor %}                      
           </div>             
         </div>       
@@ -51,14 +52,14 @@
           </div>
         </div>   
 
-
         <style>
           .card {
             display: flex;
             flex-direction: column;
             height: 100%; 
-          }        
-          .card-image-container {
+            padding-top: 30px;
+          }     
+          .card-image-container {            
             flex: 1; 
             display: flex;
             justify-content: center;
