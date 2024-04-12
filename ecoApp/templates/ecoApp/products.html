@@ -13,7 +13,7 @@
         </div>
     {% else %}
         <div class="welcome-user">
-            <h3>Regsiter now if you want to recycle! </h3>
+            <h3>Register now if you want to recycle! </h3>
         </div>
     {% endif %}    
 </div>
@@ -22,12 +22,11 @@
       
         <div class="col-2">   
           <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+            <button type="button" class="list-group-item list-group-item-action active menu-button" aria-current="true">
               Menu
             </button>
             {% for element in categories %}  <!--Mostra totes les categories que estàn guardades a la BD en el menu lateral-->
-              <button type="button" class="list-group-item list-group-item-action">{{ element }}</button>                
-              <!-- <img src="{{ element.CategoryImage.url }}" class="card-img-top" alt="..."> -->
+              <button type="button" class="list-group-item list-group-item-action">{{ element }}</button> 
             {% endfor %}                      
           </div>             
         </div>       
@@ -38,15 +37,20 @@
               
               <div class="col">
                 <div class="card h-100">                  
-                  <img src="{{element.ItemImage.url}}" class="card-img-top" alt="..."> 
-                  
-                    
+                  <img src="{{element.ItemImage.url}}" class="card-img-top" alt="...">    
                   <div class="card-body">
                     <h5 class="card-title">{{ element }}</h5>
                     <p class="card-text">{{ element.ItemDescription }}</p>
+                    <div class="select-div">
+                      <form method="GET" action="">
+                        <button class="btn btn-success ms-2 shadow select-button" type="submit" style="">Select</button>
+                      </form> 
+                    </div>
+                    
                   </div>
-                </div>
-              </div>     
+                </div>                 
+              </div>   
+              
                                  
             {% endfor %}
           </div>
@@ -70,6 +74,14 @@
             height: 200px; 
             object-fit: cover; 
             margin: auto; 
+          }
+          .menu-button{
+            background-color: #8daf73!important;
+          }
+
+          
+          .select-button{
+            width: 100%;
           }
         </style>
       </div>  
