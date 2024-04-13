@@ -47,10 +47,14 @@ def profile(request):
     return render(request, 'ecoApp/profile.html', {'form': form})
 
 
-def products(request):
-    categories = Category.objects.all()   
-    items = Item.objects.all()
-    return render(request, 'ecoApp/products.html', {"categories": categories, "items":items})
+def products(request, category_id=None):
+    if category_id:
+         items = Item.objects.filter(Category=category_id)
+    else:
+         items = Item.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'ecoApp/products.html', {"items": items, "categories": categories})
+
 
 
 class PasswordChangeView(PasswordChangeView):
