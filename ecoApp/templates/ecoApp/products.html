@@ -9,7 +9,7 @@
     
     {% if request.user.is_authenticated %}
         <div class="welcome-user">
-            <h3>Hello {{user}}, you have {{ user.profile.ProfilePoints }} points ! </h3>
+            <h3>Hello {{user}}, you have {{ user.profile.ProfilePoints }} points! </h3>
         </div>
     {% else %}
         <div class="welcome-user">
@@ -41,17 +41,16 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ element }}</h5>
                     <p class="card-text">{{ element.ItemDescription }}</p>
-                    <div class="select-div">
-                      <form method="GET" action="">
-                        <button class="btn btn-success ms-2 shadow select-button" type="submit" style="">Select</button>
-                      </form> 
-                    </div>
+                    
                     
                   </div>
+                  <div class="select-div">
+                    <form method="GET" action="">
+                      <button class="btn btn-success shadow select-button" type="submit">Select</button>
+                    </form> 
+                  </div>
                 </div>                 
-              </div>   
-              
-                                 
+              </div>                         
             {% endfor %}
           </div>
         </div>   
@@ -70,18 +69,22 @@
             align-items: center;
           }        
           .card-img-top {
-            width: 200px;
-            height: 200px; 
+            width: 250px;
+            height: 250px; 
             object-fit: cover; 
             margin: auto; 
           }
           .menu-button{
             background-color: #8daf73!important;
-          }
+          }            
+          .select-div{
+            align-items: center;
+            padding: 20px;
 
-          
+          }
           .select-button{
-            width: 100%;
+            width: 100%;           
+
           }
         </style>
       </div>  
