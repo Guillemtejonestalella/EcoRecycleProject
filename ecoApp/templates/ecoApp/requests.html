@@ -1,0 +1,20 @@
+{% extends 'ecoApp/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="initial-content" style="margin-top: 60px;"> 
+    <h2>MY REQUESTS</h2>
+    
+    {% if request.user.is_authenticated %}
+        <div class="welcome-user">
+            <h3>Hello {{user}}, modify your requests</h3>
+        </div>   
+    {% endif %}    
+</div>
+
+</div>
+
+
+{% endblock %}

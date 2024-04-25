@@ -13,6 +13,8 @@ from ecoApp.models import Category, Item
 
 # Create your views here.
 
+
+
 def index(request):
     return render(request, 'ecoApp/index.html')
 
@@ -21,6 +23,10 @@ def aboutus(request):
 
 def login(request):
     return render(request, 'registration/login.html')
+
+@login_required
+def requests(request):
+    return render(request, 'ecoApp/requests.html')
 
 def register(request):
     data = {
