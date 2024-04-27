@@ -95,31 +95,101 @@
       </div>  
 </div>
 
-
-
-  <!-- Modal -->
-
-  <div class="modal fade" id="selectItemModal" tabindex="-1" aria-labelledby="selectItemModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="selectItemModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- select Modal -->
+<div class="modal fade" id="selectItemModal" tabindex="-1" aria-labelledby="selectItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="selectItemModalLabel">Select Item</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!--CONTINGUT HARDODEJAT DEL SELECT_ITEM_MODAL-->
+            <div class="col-md-20">
+              {% if request.user.is_authenticated %}        
+                  
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4>Washing machine</h2>                              
+                    </div>
+                </div>
+                <div class="card-body collapse show" id="requestDetails">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Units:</label>
+                            <input type="number" value="1" min="1" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label>Weight (kg):</label>
+                            <input type="text" value="0" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label>Brand:</label>
+                            <select class="form-select">
+                                <option value="BrandA">Brand A</option>
+                                <option value="BrandB">Brand B</option>
+                                <option value="BrandC">Brand C</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Dimensions (cm):</label>
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class=""></i></span>
+                                        <input type="text" value="0" placeholder="Length" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class=""></i></span>
+                                        <input type="text" value="0" placeholder="Width" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class=""></i></span>
+                                        <input type="text" value="0" placeholder="Depth" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Status:</label>
+                            <select class="form-select">
+                                <option value="New">New</option>
+                                <option value="Old">Old</option>
+                                <option value="Used">Used</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Points:</label>
+                            <span class="form-control">25</span>
+                        </div>                              
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label>Observations:</label>
+                            <textarea class="form-control" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                  
+              {% else %}
+                  <p>You need to be logged in to view this page.</p>
+              {% endif %}
           </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-          </div>
+
+          <!--*******************************************-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add Item</button>
         </div>
       </div>
     </div>
   </div>
-  
- 
-
+</div>
 
 {% endblock %}

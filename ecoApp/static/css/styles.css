@@ -61,6 +61,10 @@ body {
     flex-direction: column;    
 } 
 
+.modal-xl{
+    max-width: 90%;
+}
+
 .navbar-color {
     background-color:#7e9772 !important; 
     /* background-image: url('../assets/img/navBarImage.jpg'); */    
