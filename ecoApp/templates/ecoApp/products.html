@@ -48,10 +48,7 @@
                   </div>
                   <div class="select-div">
                     <form method="GET" action="">
-
-                      <button type="button" class="btn btn-success shadow select-button" data-bs-toggle="modal" data-bs-target="#selectItemModal">Select </button>
-                        
-                     
+                      <button type="button" class="btn btn-success shadow select-button" data-bs-toggle="modal" data-bs-target="#selectItemModal">Select</button>                     
                     </form> 
                   </div>
                 </div>                 
@@ -110,22 +107,22 @@
               {% if request.user.is_authenticated %}        
                   
                 <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4>Washing machine</h2>                              
+                    <div class="d-flex justify-content-between align-items-center">                      
+                      <h3>Washing machine</h3>                         
                     </div>
                 </div>
                 <div class="card-body collapse show" id="requestDetails">
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Units:</label>
+                            <label><strong>Units:</strong></label>
                             <input type="number" value="1" min="1" class="form-control">
                         </div>
                         <div class="col-md-2">
-                            <label>Weight (kg):</label>
+                            <label><strong>Weight (kg):</strong></string></label>
                             <input type="text" value="0" class="form-control">
                         </div>
                         <div class="col-md-2">
-                            <label>Brand:</label>
+                            <label><strong>Brand:</strong></label>
                             <select class="form-select">
                                 <option value="BrandA">Brand A</option>
                                 <option value="BrandB">Brand B</option>
@@ -133,30 +130,40 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label>Dimensions (cm):</label>
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class=""></i></span>
-                                        <input type="text" value="0" placeholder="Length" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class=""></i></span>
-                                        <input type="text" value="0" placeholder="Width" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class=""></i></span>
-                                        <input type="text" value="0" placeholder="Depth" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                          <label><strong>Dimensions (cm):</strong></label>
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <div class="input-group">
+                                      <div class="d-flex align-items-center">
+                                          <p class="m-0">Length</p>
+                                      </div>
+                                      <span class="input-group-text"><i class=""></i></span>
+                                      <input type="text" value="0" placeholder="Length" class="form-control">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="input-group">
+                                      <div class="d-flex align-items-center">
+                                          <p class="m-0">Width</p>
+                                      </div>
+                                      <span class="input-group-text"><i class=""></i></span>
+                                      <input type="text" value="0" placeholder="Width" class="form-control">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="input-group">
+                                      <div class="d-flex align-items-center">
+                                          <p class="m-0">Depth</p>
+                                      </div>
+                                      <span class="input-group-text"><i class=""></i></span>
+                                      <input type="text" value="0" placeholder="Depth" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
                         <div class="col-md-2">
-                            <label>Status:</label>
+                            <label><strong>Status:</strong></label>
                             <select class="form-select">
                                 <option value="New">New</option>
                                 <option value="Old">Old</option>
@@ -164,13 +171,13 @@
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <label>Points:</label>
+                            <label><strong>Points:</strong></label>
                             <span class="form-control">25</span>
                         </div>                              
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <label>Observations:</label>
+                            <label><strong>Observations:</strong></label>
                             <textarea class="form-control" rows="2"></textarea>
                         </div>
                     </div>

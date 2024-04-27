@@ -28,6 +28,9 @@ def login(request):
 def requests(request):
     return render(request, 'ecoApp/requests.html')
 
+def requestsHistory(request):
+    return render(request, 'ecoApp/requestsHistory.html')
+
 def register(request):
     data = {
         'form': CustomUserCreationForm()   

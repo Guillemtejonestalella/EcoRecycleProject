@@ -1,0 +1,15 @@
+{% extends 'ecoApp/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="initial-content" style="margin-top: 60px;"> 
+    <h2>REQUESTS HISTORY</h2>
+    <div class="welcome-user">
+        <h3>Hello {{ request.user.username }}, view your requests here!</h3>
+        <p>Aqui hi haurà el registre de les solicituds que ha realitzat l'usuari i l estat en el que es troben (pendents o acceptades)</p>
+    </div>  
+</div>
+
+
+{% endblock %}
