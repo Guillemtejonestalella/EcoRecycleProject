@@ -63,8 +63,8 @@ def products(request, category_id=None):
          items = Item.objects.all()
     categories = Category.objects.all()
     brands = {
-        3: ["samsung", "LG", "Bosch", "Siemens", "Panasonic", "Dyson", "Beko", "AEG", "Electrolux", "Whirlpool"],
-        4: ["samsung", "huawei", "Apple", "Sony", "LG", "Dell", "HP", "Lenovo", "Microsoft", "Google", "Panasonic", 
+        3: ["Samsung", "LG", "Bosch", "Siemens", "Panasonic", "Dyson", "Beko", "AEG", "Electrolux", "Whirlpool"],
+        4: ["Samsung", "Huawei", "Apple", "Sony", "LG", "Dell", "HP", "Lenovo", "Microsoft", "Google", "Panasonic", 
             "Bose", "Canon", "Nikon", "GoPro", "Philips", "Logitech", "Asus", "MSI", "Toshiba", "Razer"],        
     }
     return render(request, 'ecoApp/products.html', {"items": items, "categories": categories, "brands": brands})
