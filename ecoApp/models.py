@@ -10,6 +10,7 @@ class Category(models.Model):
     CategoryName = models.CharField(verbose_name='Category', max_length=70, null=False, unique=True)
     CategoryPoints = models.IntegerField(verbose_name='Category Points', null = False)
     CategoryImage = models.ImageField(verbose_name="Category Image", upload_to="ecoApp/static/asstets/img", null=False, blank=False)
+    CategoryBrands = models.JSONField(default=list)
 
     def __str__(self):
         return self.CategoryName
