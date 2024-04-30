@@ -51,7 +51,7 @@
                       <button type="button" class="btn btn-success shadow select-button" data-bs-toggle="modal" 
                         data-bs-target="#selectItemModal" data-item-name="{{ element }}" 
                         data-item-points="{{ element.Category.CategoryPoints }}"
-                        data-item-category="{{ element.Category.CategoryBrands}}">
+                        data-item-category="{{ element.Category.CategoryBrands }}">
                         Select
                       </button>                     
                     </form> 
@@ -130,36 +130,18 @@
                         <div class="col-md-2">
                           <label><strong>Brand:</strong></label> 
 
-                          <!-- esto esta bien -->
-                          <h3 id="modalItemCategory">Item Category</h3> 
-                          {% for brand in brands %}
-                            {% for item in brand %}
-                                <p>{{ item }}</p>
-                            {% endfor %}
-                          {% endfor %}
+                                                    
+                          <h4 id="modalItemCategory">Item Category</h4>
 
+                          <select class="form-select">  
 
-                          <select class="form-select">
-                            <h3 id="modalItemCategory">Item Category</h3>
-                            
-                            <option>hola </option> 
-                            <!-- {% if item.Category.id == 3 %}
-                                {% for marca in brands.3 %}
-                                    <option value="{{ marca }}">{{ marca }}</option>
-                                {% endfor %}
-                            {% elif item.Category.id == 4 %}
-                                {% for marca in brands.4 %}
-                                    <option value="{{ marca }}">{{ marca }}</option>
-                                {% endfor %}
-                            {% else %}
-                                <option>No brands available for this category</option>
-                            {% endif %} -->
-                        </select>
+                            <option> </option>                            
+                          </select> 
                         
                           
                         </div>
                         <div class="col-md-6">
-                          <label><strong>Dimensions (cm):</strong></label>
+                          <label><strong>Dimensions (cm):</strong></label>  
                           <div class="row">
                               <div class="col-md-4">
                                   <div class="input-group">
@@ -238,10 +220,11 @@
 
           $('#modalItemName').text(itemName); 
           $('#modalItemPoints').text(itemPoints);    
-          $('#modalItemCategory').text(itemCategory); 
-
+          $('#modalItemCategory').text(itemCategory);
       });
   });
-  </script>
+</script> 
+  
+    
 
 {% endblock %}
