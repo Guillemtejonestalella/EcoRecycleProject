@@ -48,11 +48,12 @@
                   </div>
                   <div class="select-div">
                     <form method="GET" action="">
-                      <button type="button" class="btn btn-success shadow select-button" data-bs-toggle="modal" 
+                      <button type="button" class="btn btn-success shadow select-button" data-bs-toggle="modal"  
                         data-bs-target="#selectItemModal" data-item-name="{{ element }}" 
                         data-item-points="{{ element.Category.CategoryPoints }}"
-                        data-item-category="{{ element.Category.CategoryBrands }}">
-                        Select
+                        data-item-brand="{{ element.Category.CategoryBrands }}"
+                        data-item-category="{{ element.Category}}">
+                        Select  <!--al clicar select, es pasa tota la informacio del item al modal (Nom, punts, marques, categoria)-->
                       </button>                     
                     </form> 
                   </div>
@@ -106,15 +107,14 @@
           <h1 class="modal-title fs-5" id="selectItemModalLabel">Select Item</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <!--CONTINGUT HARDODEJAT DEL SELECT_ITEM_MODAL-->
+        <div class="modal-body">          
             <div class="col-md-20">
               {% if request.user.is_authenticated %}        
                   
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">                      
-                      <h3 id="modalItemName">Item Name</h3>
-                      <!-- <h3>Washing machine</h3>                          -->
+                      <h3 id="modalItemName">Item Name</h3>  
+                      <!-- Item Name s'omple amb JS (script d'abaix) -->                    
                     </div>
                 </div>
                 <div class="card-body collapse show" id="requestDetails">
@@ -123,24 +123,18 @@
                             <label><strong>Units:</strong></label>
                             <input type="number" value="1" min="1" class="form-control">
                         </div>
-                        <div class="col-md-2">
+                        <div  id="weight-div" class="col-md-2">
                             <label><strong>Weight (kg):</strong></string></label>
                             <input type="text" value="0" class="form-control">
                         </div>
-                        <div class="col-md-2">
-                          <label><strong>Brand:</strong></label> 
-
-                                                    
-                          <h4 id="modalItemCategory">Item Category</h4>
-
+                        <div id="brand-div"  class="col-md-2">
+                          <label><strong>Brand:</strong></label>    
                           <select class="form-select">  
-
-                            <option> </option>                            
+                            <!-- opcions s'omplen amb JS (script d'abaix) -->
                           </select> 
-                        
-                          
-                        </div>
-                        <div class="col-md-6">
+                        </div>                        
+                        <div id="dimension-div"  class="col-md-6">
+                         
                           <label><strong>Dimensions (cm):</strong></label>  
                           <div class="row">
                               <div class="col-md-4">
@@ -171,11 +165,11 @@
                                   </div>
                               </div>
                           </div>
-                      </div>
+                        </div>
                       
                         <div class="col-md-2">
                             <label><strong>Status:</strong></label>
-                            <select class="form-select">
+                            <select class="form-control">
                                 <option value="New">New</option>
                                 <option value="Old">Old</option>
                                 <option value="Used">Used</option>
@@ -199,31 +193,69 @@
                   <p>You need to be logged in to view this page.</p>
               {% endif %}
           </div>
-
-          <!--*******************************************-->
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Add Item</button>
         </div>
+
       </div>
     </div>
   </div>
 </div>
 
+
+<!--Aquest script l'utilizo per passar la informacio de l'item que hem seleccionat cap al modal. Ja que sino desde el modal no puc accedir-->
 <script>
   $(document).ready(function(){
       $('.select-button').click(function(){
           var itemName = $(this).data('item-name'); 
           var itemPoints = $(this).data('item-points');
           var itemCategory = $(this).data('item-category');
+          var itemBrandText = $(this).data('item-brand'); //obtinc les marques de la categoria en format ['brand1','brand2','brand3']          
+          
+          var cleanText = itemBrandText.replace(/^\[|\]$/g, ''); //elimino [] i ''         
+          var itemBrand = cleanText.split(', '); //converteixo la cadena a una llista d'elements separats per ,
 
           $('#modalItemName').text(itemName); 
-          $('#modalItemPoints').text(itemPoints);    
+          $('#modalItemPoints').text(itemPoints);  
           $('#modalItemCategory').text(itemCategory);
+
+          $('#modalItembrand').text(itemBrand.join(', ')); // Mostra els elements de la llista en una cadena separada por ,
+          
+          $('.form-select').empty(); //es buida el contingut del select
+         
+          $.each(itemBrand, function(index, value) { //omplo el select amb les opcions de la llista nova              
+              value = value.replace(/^'|'$/g, ''); //torno a eliminar ''
+              $('.form-select').append('<option>' + value.trim() + '</option>');  //afegeixo les opcions en els selects amb class= .form-select
+          });
+
+
+          if (itemCategory === 'Furniture') {
+              $('#brand-div').hide();
+          } else {
+              $('#brand-div').show();
+          }
+
+          if (itemCategory === 'Electronic device') {
+              $('#dimension-div').hide();
+              $('#weight-div').hide();
+          } else {
+              $('#dimension-div').show();
+              $('#weight-div').show();
+          }
+
+          
       });
   });
-</script> 
+</script>
+
+
+
+
+
+
   
     
 
