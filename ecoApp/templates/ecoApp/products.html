@@ -4,6 +4,7 @@
 
 {% load static %}
 
+<!-- mostra els missatges inicials de la page -->
 <div class="initial-content" style="margin-top: 60px;"> 
     <h2>PRODUCTS</h2>
     
@@ -17,6 +18,9 @@
         </div>
     {% endif %}    
 </div>
+
+
+<!-- llista tots els items -->
 <div class="products-div">
     <div class="row">
       
@@ -42,8 +46,7 @@
                   <img src="{{element.ItemImage.url}}" class="card-img-top" alt="...">    
                   <div class="card-body">
                     <h5 class="card-title">{{ element }}</h5>
-                    <p class="card-text">{{ element.ItemDescription }}</p>
-                    
+                    <p class="card-text">{{ element.ItemDescription }}</p>                    
                     
                   </div>
                   <div class="select-div">
@@ -98,7 +101,7 @@
       </div>  
 </div>
 
-<!-- select Modal -->
+<!-- select Modal (s'obra un modal "configurable" al seleccionar un item)-->
 <div class="modal fade" id="selectItemModal" tabindex="-1" aria-labelledby="selectItemModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-dialog">
@@ -167,7 +170,7 @@
                           </div>
                         </div>
                       
-                        <div class="col-md-2">
+                        <div  id="status-div" class="col-md-2">
                             <label><strong>Status:</strong></label>
                             <select class="form-control">
                                 <option value="New">New</option>
@@ -175,7 +178,7 @@
                                 <option value="Used">Used</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div id="points-div"  class="col-md-2">
                             <label><strong>Points:</strong></label>   
                             <span class="form-control" id="modalItemPoints">Item Points</span>
                             <!-- <h3 id="modalItemName">Item Name</h3> -->
@@ -231,7 +234,6 @@
               $('.form-select').append('<option>' + value.trim() + '</option>');  //afegeixo les opcions en els selects amb class= .form-select
           });
 
-
           if (itemCategory === 'Furniture') {
               $('#brand-div').hide();
           } else {
@@ -244,19 +246,10 @@
           } else {
               $('#dimension-div').show();
               $('#weight-div').show();
-          }
-
-          
+          }          
       });
   });
 </script>
 
-
-
-
-
-
-  
-    
 
 {% endblock %}
