@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ecoApp', #new
+    'categories', #new
+    'items', #new
+    'profiles', #new
 ]
 
 
