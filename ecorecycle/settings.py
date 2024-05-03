@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'categories', #new
     'items', #new
     'profiles', #new
+    
 ]
 
 
