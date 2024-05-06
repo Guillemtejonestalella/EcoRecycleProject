@@ -52,15 +52,6 @@ def requests(request):
     return render(request, 'ecoApp/requests.html', {'session_items': session_items})
 
 
-
-
-
-
-
-
-
-
-
 def requestsHistory(request):
     return render(request, 'ecoApp/requestsHistory.html')
 

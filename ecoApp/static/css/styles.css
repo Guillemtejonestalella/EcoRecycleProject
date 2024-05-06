@@ -183,6 +183,15 @@ body {
     
 }
 
+.total-requests-card{
+    animation: fade-up 0.7s;    
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);    
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+
 #panel1 .accordion-button {
     background-color: #becf9bdb !important;    
 }
