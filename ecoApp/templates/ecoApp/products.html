@@ -116,7 +116,7 @@
                   
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">                      
-                      <h3 id="modalItemName">Item Name</h3>  
+                      <h3 id="modalItemName" name="new_item1">Item Name</h3> <!--modif--> 
                       <!-- Item Name s'omple amb JS (script d'abaix) -->                    
                     </div>
                 </div>
@@ -124,15 +124,15 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label><strong>Units:</strong></label>
-                            <input type="number" value="1" min="1" class="form-control">
+                            <input type="number" value="1" min="1" class="form-control" id="itemUnits">
                         </div>
                         <div  id="weight-div" class="col-md-2">
                             <label><strong>Weight (kg):</strong></string></label>
-                            <input type="text" value="0" class="form-control">
+                            <input type="text" value="0" class="form-control" id="weight">
                         </div>
                         <div id="brand-div"  class="col-md-2">
                           <label><strong>Brand:</strong></label>    
-                          <select class="form-select">  
+                          <select class="form-select" id="itemBrands">  
                             <!-- opcions s'omplen amb JS (script d'abaix) -->
                           </select> 
                         </div>                        
@@ -143,35 +143,35 @@
                               <div class="col-md-4">
                                   <div class="input-group">
                                       <div class="d-flex align-items-center">
-                                          <p class="m-0">Length</p>
+                                          <p class="m-0" >Length</p>
                                       </div>
                                       <span class="input-group-text"><i class=""></i></span>
-                                      <input type="text" value="0" placeholder="Length" class="form-control">
+                                      <input type="text" value="0" placeholder="Length" class="form-control" id="length">
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="input-group">
                                       <div class="d-flex align-items-center">
-                                          <p class="m-0">Width</p>
+                                          <p class="m-0" >Width</p>
                                       </div>
                                       <span class="input-group-text"><i class=""></i></span>
-                                      <input type="text" value="0" placeholder="Width" class="form-control">
+                                      <input type="text" value="0" placeholder="Width" class="form-control" id="width">
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="input-group">
                                       <div class="d-flex align-items-center">
-                                          <p class="m-0">Depth</p>
+                                          <p class="m-0" >Depth</p>
                                       </div>
                                       <span class="input-group-text"><i class=""></i></span>
-                                      <input type="text" value="0" placeholder="Depth" class="form-control">
+                                      <input type="text" value="0" placeholder="Depth" class="form-control" id="depth">
                                   </div>
                               </div>
                           </div>
                         </div>                      
                         <div  id="status-div" class="col-md-2">
                             <label><strong>Status:</strong></label>
-                            <select class="form-control">
+                            <select class="form-control" id="itemStatus">
                                 <option value="New">New</option>
                                 <option value="Old">Old</option>
                                 <option value="Used">Used</option>
@@ -186,7 +186,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label><strong>Observations:</strong></label>
-                            <textarea class="form-control" rows="2"></textarea>
+                            <textarea id="observations" class="form-control" rows="2"></textarea>
                         </div>
                     </div>
                 </div>
@@ -198,14 +198,30 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add Item</button>
+          <form method="post" action="{% url 'requests' %}">
+            {% csrf_token %}
+            <!-- <input type="text" name="new_item"> -->
+            <input type="hidden" id="itemData" name="item_data">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit">Add Item</button>
+          </form>
+
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add Item</button> -->
         </div>
+
+        
 
       </div>
     </div>
   </div>
 </div>
+
+<!-- <form method="post" action="{% url 'requests' %}">
+  {% csrf_token %}
+  <input type="text" name="new_item">
+  <button type="submit">Add</button>
+</form> -->
 
 
 <!--Aquest script l'utilizo per passar la informacio de l'item que hem seleccionat cap al modal. Ja que sino desde el modal no puc accedir-->
@@ -214,9 +230,9 @@
       $('.select-button').click(function(){
           var itemName = $(this).data('item-name'); 
           var itemPoints = $(this).data('item-points');
-          var itemCategory = $(this).data('item-category');
+          var itemCategory = $(this).data('item-category');          
           var itemBrandText = $(this).data('item-brand'); //obtinc les marques de la categoria en format ['brand1','brand2','brand3']          
-          
+         
           var cleanText = itemBrandText.replace(/^\[|\]$/g, ''); //elimino [] i ''         
           var itemBrand = cleanText.split(', '); //converteixo la cadena a una llista d'elements separats per ,
 
@@ -239,13 +255,46 @@
               $('#brand-div').show();
           }
 
+
           if (itemCategory === 'Electronic device') {
               $('#dimension-div').hide();
-              $('#weight-div').hide();
+              $('#weight-div').hide();              
+              
           } else {
               $('#dimension-div').show();
-              $('#weight-div').show();
-          }          
+              $('#weight-div').show();              
+          }              
+          
+          $('form').submit(function(event) {  
+
+            if (itemCategory === 'Electronic device') {
+              var itemData = {
+                'units': $('#itemUnits').val(),
+                'name': itemName,
+                'points': itemPoints,
+                'category': itemCategory,
+                'brand': $('#itemBrands').val(),
+                'status': $('#itemStatus').val(),
+                'observations': $('#observations').val()                
+              };
+              $('#itemData').val(JSON.stringify(itemData));
+            }else if (itemCategory === 'Appliance'){
+              var itemData = {
+                'units': $('#itemUnits').val(),
+                'name': itemName,
+                'points': itemPoints,
+                'category': itemCategory,
+                'brand': $('#itemBrands').val(),
+                'status': $('#itemStatus').val(),
+                'observations': $('#observations').val(),
+                'weight': $('#weight').val(),
+                'length': $('#length').val(),
+                'width': $('#width').val(),
+                'depth': $('#depth').val()
+              };
+              $('#itemData').val(JSON.stringify(itemData));
+            }   
+          });
       });
   });
 </script>

@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomUserChangePasswordForm
@@ -24,9 +25,28 @@ def aboutus(request):
 def login(request):
     return render(request, 'registration/login.html')
 
+
+# in progress
 @login_required
 def requests(request):
-    return render(request, 'ecoApp/requests.html')
+    if request.method == 'POST':
+        
+        item_data_json = request.POST.get('item_data')
+        item_data = json.loads(item_data_json)
+        session_items = request.session.get('session_items', [])
+        session_items_tuples = [tuple(item.items()) for item in session_items]
+        item_data_tuple = tuple(item_data.items())
+
+        if item_data_tuple not in session_items_tuples:
+            session_items.append(item_data)
+        
+        request.session['session_items'] = session_items       
+        return redirect('requests')  
+    
+    session_items = request.session.get('session_items', [])    
+    return render(request, 'ecoApp/requests.html', {'session_items': session_items})
+
+
 
 def requestsHistory(request):
     return render(request, 'ecoApp/requestsHistory.html')

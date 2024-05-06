@@ -10,14 +10,18 @@
     </div>  
 </div>
 
-<div class="container mt-5 mb-5">
+
+
+{% for item in session_items %}
+
+<!-- <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-8">
             {% if request.user.is_authenticated %}        
                 <div class="card mb-3">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <span>Washing machine</span>
+                            <span>{{ item.name }}</span>
                             <button class="btn btn-sm btn-link toggle-details" type="button" data-bs-toggle="collapse" data-bs-target="#requestDetails" aria-expanded="true" aria-controls="requestDetails">
                                 <i class="bi bi-chevron-up"></i>
                             </button>
@@ -74,7 +78,7 @@
                             </div>
                             <div class="col-md-2">
                                 <label>Points:</label>
-                                <span class="form-control">25</span>
+                                <span class="form-control">{{ item.points }}</span>
                             </div>
                             <div class="col-md-12">
                                 <label class="form-check-label">
@@ -94,23 +98,76 @@
                 <p>You need to be logged in to view this page.</p>
             {% endif %}
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    Request
-                </div>
-                <div class="card-body">                    
-                    <p class="card-text">Total points of all requests: <strong>25</strong></p>
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Take from home
-                    </label>
-                </div>
-                <div class="card-footer text-end">
-                    <button class="btn btn-primary">Send Request</button>
-                </div>
+        
+    </div>
+</div>  -->
+<div class="row justify-content-center">
+    <div class="col-md-9">
+        {% for item in session_items %}
+            <div class="request-container mb-4">
+                {% if item.category == 'Electronic device' %}
+                    <div class="requests-cards">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ item.name }}</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Units:</strong> {{ item.units }}</p>
+                                    <p><strong>Points:</strong> {{ item.points }}</p>
+                                    <p><strong>Category:</strong> {{ item.category }}</p>
+                                    <p><strong>Brand:</strong> {{ item.brand }}</p>
+                                    <p><strong>Status:</strong> {{ item.status }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Observations:</strong></p>
+                                    <p>{{ item.observations }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if item.category == 'Appliance' %}
+                    <div class="requests-cards">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ item.name }}</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Units:</strong> {{ item.units }}</p>
+                                    <p><strong>Points:</strong> {{ item.points }}</p>
+                                    <p><strong>Category:</strong> {{ item.category }}</p>
+                                    <p><strong>Brand:</strong> {{ item.brand }}</p>
+                                    <p><strong>Status:</strong> {{ item.status }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Observations:</strong></p>
+                                    <p>{{ item.observations }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
+    
+    
+{% endfor %}
+<!-- <div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+            Request
+        </div>
+        <div class="card-body">                    
+            <p class="card-text">Total points of all requests: <strong>25</strong></p>
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input"> Take from home
+            </label>
+        </div>
+        <div class="card-footer text-end">
+            <button class="btn btn-primary">Send Request</button>
+        </div>
+    </div>
+</div> -->
 {% endblock %}
