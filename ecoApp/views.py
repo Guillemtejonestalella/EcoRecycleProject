@@ -26,25 +26,38 @@ def login(request):
     return render(request, 'registration/login.html')
 
 
-# in progress
+# done
 @login_required
 def requests(request):
-    if request.method == 'POST':
+    if request.method == 'POST':        
+        item_data_json = request.POST.get('item_data') # Obtinc les dades del JSON   
+        item_data = json.loads(item_data_json) #el converteixo a un diccionari        
+        session_items = request.session.get('session_items', []) # Obtinc la llista actual de solicituds de la sesio de l usuari        
+       
+        unique_session_items = {tuple(item.items()) for item in session_items}  # converteixo la llista de solicituds en un conjunt de tuples hashables   
+        new_item_tuple = tuple(item_data.items())  # converteixo la nova solicitud en una tupla hashable
         
-        item_data_json = request.POST.get('item_data')
-        item_data = json.loads(item_data_json)
-        session_items = request.session.get('session_items', [])
-        session_items_tuples = [tuple(item.items()) for item in session_items]
-        item_data_tuple = tuple(item_data.items())
+       
+        if new_item_tuple not in unique_session_items:  # contorl de duplicats            
+            session_items.append(item_data)        
+        
+        request.session['session_items'] = session_items # guardo la llista actualitzada       
+        print("session_items:", session_items)
+        
+        return redirect('requests') 
 
-        if item_data_tuple not in session_items_tuples:
-            session_items.append(item_data)
-        
-        request.session['session_items'] = session_items       
-        return redirect('requests')  
-    
-    session_items = request.session.get('session_items', [])    
+    session_items = request.session.get('session_items', [])
+   
+    print("session_items:", session_items)    
     return render(request, 'ecoApp/requests.html', {'session_items': session_items})
+
+
+
+
+
+
+
+
 
 
 
