@@ -12,7 +12,6 @@ from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from items.models import Item
 from categories.models import Category
-# from profiles.models import Profile
 
 # Create your views here.
 

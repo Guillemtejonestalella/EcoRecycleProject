@@ -192,6 +192,12 @@ body {
 
 }
 
+.points-total {
+    font-size: 1.3rem !important;
+    color: #53803e;
+    font-weight: bold;
+}
+
 #panel1 .accordion-button {
     background-color: #becf9bdb !important;    
 }
