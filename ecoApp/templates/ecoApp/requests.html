@@ -3,14 +3,12 @@
 {% block content %}
 {% load static %}
 
-
 <div class="initial-content" style="margin-top: 60px;"> 
     <h2>REQUESTS IN PROGRESS</h2>
     <div class="welcome-user">
         <h3>Hello {{ request.user.username }}, modify your requests here!</h3>
     </div>  
 </div>
-
 
 <div class="row justify-content-center mt-4">
     <div class="col-md-7">   
@@ -19,32 +17,36 @@
                 {% for item in session_items %}
                     <div class="request-container mb-4">
                         {% if item.category == 'Electronic device' %}
-                            <div class="requests-cards">
+                            <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
                                     <h2 class="card-title mb-4">{{ item.name }}</h2>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4 " style="border-right: 1px solid #ccc;">
                                             <p><strong>Units:</strong> {{ item.units }} </p>
                                             <p><strong>Points:</strong> {{ item.points }}</p>
                                             <p><strong>Category:</strong> {{ item.category }}</p>
                                             <p><strong>Brand:</strong> {{ item.brand }}</p>
                                             <p><strong>Status:</strong> {{ item.status }}</p>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" style="margin-left: 30px;">
                                             <p><strong>Observations:</strong></p>
                                             <p>{{ item.observations }}</p>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn btn-danger delete-btn" data-index="{{ forloop.counter0 }}">Delete</button>
+                                </div>
                             </div>
+                            
                         {% endif %}
 
                         {% if item.category == 'Appliance' %}
-                            <div class="requests-cards">
+                            <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
                                     <h2 class="card-title mb-4">{{ item.name }}</h2>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4" style="border-right: 1px solid #ccc;">                                            
                                             <p><strong>Units:</strong> {{ item.units }}</p>
                                             <p><strong>Points:</strong> {{ item.points }}</p>
                                             <p><strong>Category:</strong> {{ item.category }}</p>
@@ -53,13 +55,17 @@
                                             <p><strong>Weight:</strong> {{ item.weight }} kg</p>                                    
                                             <p><strong>Dimensions:</strong> {{ item.length }}cm x {{ item.width }}cm x {{ item.depth }}cm</p>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" style="margin-left: 30px;">                                            
                                             <p><strong>Observations:</strong></p>
                                             <p>{{ item.observations }}</p>
                                         </div>
-                                    </div>
+                                    </div>    
+                                </div>
+                                <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn btn-danger delete-btn" data-index="{{ forloop.counter0 }}">Delete</button>
                                 </div>
                             </div>
+                            
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -108,12 +114,6 @@
         calcularPuntosTotales();
     };
 </script>
-
-
-
-
-
-
 
 
 {% endblock %}
