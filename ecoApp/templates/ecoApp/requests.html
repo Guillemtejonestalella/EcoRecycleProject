@@ -66,8 +66,11 @@
                                     </div>    
                                 </div>
                                 <div class="card-footer d-flex justify-content-end">
-                                    
-                                    <button class="btn btn-danger delete-btn" data-index="{{ forloop.counter0 }}">Delete</button>
+                                    <form action="{% url 'requests' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_item_index" value="{{ forloop.counter0 }}">
+                                        <button type="submit" class="btn btn-danger delete-btn " >Delete</button>
+                                    </form>
                                 </div>
                             </div>
                             
@@ -134,5 +137,26 @@
 
 </script>
 
+<!-- 
+<script>
+    function deleteItem(index) {
+        fetch('', {  // Debes especificar la URL adecuada aquí si no es la misma que la página actual
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'),  // Asegúrate de manejar el CSRF token
+            },
+            body: JSON.stringify({'delete_item_index': index})
+        }).then(response => response.json())
+          .then(data => {
+            if (data.success) {
+                // Opcional: Si deseas actualizar dinámicamente el contenido del cliente sin recargar la página
+                document.getElementById('delete-form-' + index).remove(); // Eliminar el formulario del DOM
+            } else {
+                alert('Error deleting item');
+            }
+        });
+    }
+    </script> -->
 
 {% endblock %}
