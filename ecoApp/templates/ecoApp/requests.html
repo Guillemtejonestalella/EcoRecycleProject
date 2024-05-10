@@ -40,7 +40,7 @@
                                 </div>
                                 <form action="{% url 'requests' %}" method="post">
                                     {% csrf_token %}
-                                    <input  name="delete_item_index" value="{{ forloop.counter0 }}">
+                                    <input  type="hidden" name="delete_item_index" value="{{ forloop.counter0 }}">
                                     <button type="submit" class="btn btn-danger delete-btn">Delete</button> 
                                 </form>
                             </div>
@@ -70,7 +70,7 @@
                                 <div class="card-footer d-flex justify-content-end">
                                     <form action="{% url 'requests' %}" method="post">
                                         {% csrf_token %}
-                                        <input  name="delete_item_index" value="{{ forloop.counter0 }}">
+                                        <input  type="hidden" name="delete_item_index" value="{{ forloop.counter0 }}">
                                         <button type="submit" class="btn btn-danger delete-btn">Delete</button> 
                                     </form>
                                 </div>
