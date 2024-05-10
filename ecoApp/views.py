@@ -25,50 +25,19 @@ def login(request):
     return render(request, 'registration/login.html')
 
 
-# done
-# @login_required
-# def requests(request):
-#     if request.method == 'POST':        
-#         item_data_json = request.POST.get('item_data') # Obtinc les dades del JSON   
-#         item_data = json.loads(item_data_json) #el converteixo a un diccionari        
-#         session_items = request.session.get('session_items', []) # Obtinc la llista actual de solicituds de la sesio de l usuari        
-    
-#         unique_session_items = {tuple(item.items()) for item in session_items}  # converteixo la llista de solicituds en un conjunt de tuples hashables   
-#         new_item_tuple = tuple(item_data.items())  # converteixo la nova solicitud en una tupla hashable
-    
-    
-#         if new_item_tuple not in unique_session_items:  # contorl de duplicats            
-#             session_items.append(item_data)        
-    
-#         request.session['session_items'] = session_items # guardo la llista actualitzada       
-#         print("session_items:", session_items)
-    
-#         return redirect('requests') 
-
-#     session_items = request.session.get('session_items', [])
-
-
-#     print("session_items:", session_items)    
-#     return render(request, 'ecoApp/requests.html', {'session_items': session_items})
-
-
-
 @login_required
 def requests(request):
     session_items = request.session.get('session_items', [])
 
     if request.method == 'POST':
-        if 'delete_item_index' in request.POST:
-            # Manejar la eliminación de un ítem
-            item_index = int(request.POST['delete_item_index'])
-            if 0 <= item_index < len(session_items):
-                del session_items[item_index]
-                request.session['session_items'] = session_items
-                request.session.modified = True
-            return redirect('requests')
-
-        else:
-            # Manejar la adición de un nuevo ítem
+        if 'delete_item_index' in request.POST: #en cas que la solicitud sigui post i tingui l'index delete del item  (solicitud per borrar item)           
+             item_index = int(request.POST['delete_item_index'])
+             if 0 <= item_index < len(session_items):
+                 del session_items[item_index]
+                 request.session['session_items'] = session_items
+                 request.session.modified = True
+             return redirect('requests')   
+        else:  # en cas que la solicitud post no tingui l'index delete del item (solicitud per afegir nou item)           
             item_data_json = request.POST.get('item_data')
             item_data = json.loads(item_data_json)
             
@@ -79,8 +48,7 @@ def requests(request):
                 session_items.append(item_data)
                 request.session['session_items'] = session_items
 
-        return redirect('requests')
-    
+        return redirect('requests')    
     return render(request, 'ecoApp/requests.html', {'session_items': session_items})
 
 
