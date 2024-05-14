@@ -103,9 +103,9 @@
                             <br>
                             <label for="pickup-address">Select pickup address:</label>
                             <select id="pickup-address" name="pickup_address" class="form-control">
-                                <option value="address1">Dirección 1</option>
-                                <option value="address2">Dirección 2</option>
-                                <option value="address3">Dirección 3</option>
+                                <option value="address1">Carrer Comte d'Urgell, 230</option>
+                                <option value="address2">Carrer Viladomat, 42</option>
+                                <option value="address3">Carrer Mallorca, 13 </option>
                                 
                             </select>
                             <br>
@@ -182,8 +182,11 @@
     function homePickup() {
         var checkBox = document.getElementById('home-delivery');
         var dateInputContainer = document.getElementById('date-input-container');
+        var pickUpList = document.getElementById('pickup-list');
+
         if (checkBox.checked) {
             dateInputContainer.style.display = 'block';
+            pickUpList.style.display = 'none'; 
         } else {
             dateInputContainer.style.display = 'none';
         }
@@ -191,12 +194,14 @@
 
     function pickUpPoint() {
         var checkBox = document.getElementById('pickup-point');
-        var pickUpList = document.getElementById('pickup-list'); 
-        
+        var pickUpList = document.getElementById('pickup-list');
+        var dateInputContainer = document.getElementById('date-input-container');
+
         if (checkBox.checked) {
-            pickUpList.style.display = 'block'; 
+            pickUpList.style.display = 'block';
+            dateInputContainer.style.display = 'none'; 
         } else {
-            pickUpList.style.display = 'none'; 
+            pickUpList.style.display = 'none';
         }
     }
 
@@ -211,8 +216,8 @@
     window.onload = function() {
         calcularPuntosTotales();
     };
-    
 </script>
+
 
 
 
