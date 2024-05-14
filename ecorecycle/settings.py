@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ecoApp', #new
-    'categories', #new
-    'items', #new
-    'profiles', #new
+    'ecoApp', 
+    'categories', 
+    'items', 
+    'profiles', 
+    'order', 
+    'orderline' 
+
     
 ]
 
