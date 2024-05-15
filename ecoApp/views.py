@@ -79,9 +79,7 @@ def create_order(request):
         # year, month, day = map(int, pickup_date_str.split('-'))
 
         # # Crear un objeto date
-        # pickup_date_obj = datetime(year, month, day).date()
-
-        
+        # pickup_date_obj = datetime(year, month, day).date()       
         
 
         order = Order(
