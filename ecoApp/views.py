@@ -1,3 +1,5 @@
+from asyncio import log
+import datetime
 import json
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -12,6 +14,9 @@ from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
 from items.models import Item
 from categories.models import Category
+from order.models import Order
+from orderline.models import Orderline
+from django.utils import timezone
 
 # Create your views here.
 
@@ -50,6 +55,68 @@ def requests(request):
 
         return redirect('requests')    
     return render(request, 'ecoApp/requests.html', {'session_items': session_items})
+
+
+@login_required
+def create_order(request):
+    if request.method == 'POST':
+        user = request.user
+        session_items = request.session.get('session_items', [])
+
+        if not session_items:
+            return redirect('requests')  
+        
+        # pickup_date_str = request.POST['pickup_date'];
+        # pickup_date_obj = datetime._parse_isoformat_date(pickup_date_str);
+                
+        # pickup_date_str = request.POST['pickup_date']
+        # pickup_date_obj = datetime.strptime(pickup_date_str, '%Y-%m-%d').date()
+
+        # Obtener la cadena de fecha del formulario
+        # pickup_date_str = request.POST['pickup_date']
+
+        # # Dividir la cadena de fecha en año, mes y día
+        # year, month, day = map(int, pickup_date_str.split('-'))
+
+        # # Crear un objeto date
+        # pickup_date_obj = datetime(year, month, day).date()
+
+        
+        
+
+        order = Order(
+            OrderUser=user,
+            OrderPoints=70,
+            # sum(item['points'] * item.get('units', 1) for item in session_items),
+            OrderStatus='Pending approval',
+            OrderHomePickup=request.POST['home_pickup'] == 'true',
+            OrderCreationDate=timezone.now().date(),
+            OrderPickupDate= timezone.now().date(),
+            # request.POST['pickup_date'],
+            OrderAddress="Carrer Urgell 230"  # Asumiendo que el usuario tiene una dirección en su perfil
+        )
+        order.save()
+
+        for item in session_items:
+            Orderline.objects.create(
+                Order=order,
+                OrderlineItem=item['name'],
+                OrderlineUnits=item.get('units', 1),
+                OrderlineWeight=item.get('weight', 0),
+                OrderlineBrand=item.get('brand', ''),
+                OrderlineHeight=item.get('height', 0),
+                OrderlineDepth=item.get('depth', 0),
+                OrderlineWidth=item.get('width', 0),
+                OrderlineStatus=item.get('status', 'Pending'),
+                OrderlineObservations=item.get('observations', ''),
+                OrderlinePoints=item['points']
+            )     
+        del request.session['session_items']
+        request.session.modified = True  # Asegurar que Django sabe que la sesión ha cambiado
+        return redirect('requestsHistory') 
+    
+    return redirect('requests')
+        
 
 
 
