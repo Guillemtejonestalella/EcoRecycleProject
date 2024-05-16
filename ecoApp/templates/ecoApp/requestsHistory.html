@@ -30,9 +30,9 @@
                 {% for request in user_requests %}
                 <tr>
                     <td>{{ request.OrderCreationDate }}</td> 
-                    <td>{{ request.OrderHomePickup }}</td>
+                    <td>{% if request.OrderHomePickup %}Yes{% else %}No{% endif %}</td>
                     <td>{{ request.OrderAddress }}</td>
-                    <td>{{ request.OrderDelivery }}</td>
+                    <td>{% if request.OrderDelivery %}Yes{% else %}No{% endif %}</td>
                     <td>{{ request.OrderDeliveryAddress }}</td>                    
                     <td>{{ request.OrderPickupDate }}</td>
                     <td>{{ request.OrderPoints }}</td>

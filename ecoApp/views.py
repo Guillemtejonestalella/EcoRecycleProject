@@ -66,12 +66,9 @@ def create_order(request):
         if not session_items:
             return redirect('requests')    
 
-        total_points = int(request.POST.get('total_points', 0))   
-
+        total_points = int(request.POST.get('total_points', 0)) 
         delivery_address = request.POST.get('delivery_address', '') 
-
-        address_delivery = request.POST.get('address_delivery', '')        
-                
+        address_delivery = request.POST.get('address_delivery', '')   
         home_pickup = 'home_pickup' in request.POST  
         pick_up_point = 'pick_up_point' in request.POST
         
@@ -84,8 +81,12 @@ def create_order(request):
         try:
             pickup_date = timezone.datetime.strptime(pickup_date_str, "%Y-%m-%d").date()
         except ValueError:            
-            pickup_date = None    
-       
+            pickup_date = None      
+
+        # if home_pickup == True:
+        #     home_pickup_str = "Yes"
+        # else:
+        #     home_pickup_str = "No"     
 
         order = Order(
             OrderUser=user,
@@ -120,9 +121,6 @@ def create_order(request):
     
     return redirect('requests')
         
-
-
-
 
 
 def register(request):
