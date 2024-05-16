@@ -160,16 +160,16 @@ body {
 }
 
 .table-container {
-    
-    overflow-x: auto; /* Agrega desplazamiento horizontal si la tabla es más ancha que el contenedor */
+    /* overflow-x: auto; Agrega desplazamiento horizontal si la tabla es más ancha que el contenedor */
     animation: fade-up 0.7s;
     max-width: 2000px;
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    margin-top: 122px !important;
+    margin: 50px auto 0 auto; /* Esto centra el div horizontalmente */
     background-color: rgba(255, 255, 255, 0.8);
 }
+
 
 
 

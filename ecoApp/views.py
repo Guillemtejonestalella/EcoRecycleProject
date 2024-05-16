@@ -76,7 +76,9 @@ def create_order(request):
         pick_up_point = 'pick_up_point' in request.POST
         
         if pick_up_point == False:
-            address_delivery = None
+            address_delivery = "-"
+        else:
+            delivery_address = "-"
 
         pickup_date_str = request.POST.get('pickup_date', '') 
         try:
@@ -104,7 +106,7 @@ def create_order(request):
                 OrderlineItem=item['name'],
                 OrderlineUnits=item.get('units', 1),
                 OrderlineWeight=item.get('weight', None),
-                OrderlineBrand=item.get('brand', ''),
+                OrderlineBrand=item.get('brand', '-'),
                 OrderlineHeight=item.get('height', None),
                 OrderlineDepth=item.get('depth', None),
                 OrderlineWidth=item.get('width', None),

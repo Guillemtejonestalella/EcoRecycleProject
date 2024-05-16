@@ -11,15 +11,15 @@
 </div>
 
 {% if user_requests %}
-    <div class="table-container">
+    <div class="table-container ">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Creation Date</th>  
                     <th>Home Pickup</th>
-                    <th>Delivery</th>
-                    <th>Delivery Address</th>
                     <th>Address</th>
+                    <th>Delivery</th>
+                    <th>Delivery Address</th>                    
                     <th>Pickup Date</th>
                     <th>Points</th>
                     <th>Status</th>
@@ -31,9 +31,9 @@
                 <tr>
                     <td>{{ request.OrderCreationDate }}</td> 
                     <td>{{ request.OrderHomePickup }}</td>
-                    <td>{{ request.OrderDelivery }}</td>
-                    <td>{{ request.OrderDeliveryAddress }}</td>
                     <td>{{ request.OrderAddress }}</td>
+                    <td>{{ request.OrderDelivery }}</td>
+                    <td>{{ request.OrderDeliveryAddress }}</td>                    
                     <td>{{ request.OrderPickupDate }}</td>
                     <td>{{ request.OrderPoints }}</td>
                     <td>{{ request.OrderStatus }}</td>
