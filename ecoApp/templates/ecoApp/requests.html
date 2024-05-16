@@ -90,34 +90,39 @@
                     <input type="hidden" id="total-points-input" name="total_points">             
                     <p>Total Points: <span id="total-points" class="points-total">0</span></p>                
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="home-delivery" onchange="toggleCheckbox('home-delivery', 'pickup-point'); homePickup()">
+                        <input class="form-check-input" type="checkbox" id="home-delivery" name="home_pickup" onchange="toggleCheckbox('home-delivery', 'pickup-point'); homePickup()">
                         <label class="form-check-label" for="home-delivery">Home pickup</label>
                     </div>    
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="pickup-point" onchange="toggleCheckbox('pickup-point', 'home-delivery'); pickUpPoint()">
-                        <label class="form-check-label" for="pickup-point">Select pick-up point</label>
-                    </div>                      
+                        <input class="form-check-input" type="checkbox" id="pickup-point" name ="pick_up_point" onchange="toggleCheckbox('pickup-point', 'home-delivery'); pickUpPoint()">
+                        <label class="form-check-label" for="pickup-point">Select delivery point</label>
+                    </div>           
+                    
+                    
                     <div id="pickup-list" style="display: none;">
                         <div class="form-group">
                             <br>
-                            <label for="pickup-address">Select pickup address:</label>
-                            <select id="pickup-address" name="home_pickup" class="form-control">
-                                <option value="address1">Carrer Comte d'Urgell, 230</option>
-                                <option value="address2">Carrer Viladomat, 42</option>
-                                <option value="address3">Carrer Mallorca, 13 </option>
+                            <label for="delivery-address">Select delivery address:</label>
+                            <select id="delivery-address" name="address_delivery" class="form-control">
+                                <option value="Carrer Comte d'Urgell, 230">Carrer Comte d'Urgell, 230</option>
+                                <option value="Carrer Viladomat, 42">Carrer Viladomat, 42</option>
+                                <option value="Carrer Mallorca, 13">Carrer Mallorca, 13</option>
                             </select>
                             <br>
                         </div>
-                    </div>                    
+                    </div>                 
+
                     <div id="date-input-container" style="display: none;">
                         <br><br>
                         <label for="pickup-date">Select pickup date:</label>
                         <input type="date" id="pickup-date" name="pickup_date" class="custom-date-input">
                         <br><br>
                         
-                        <label for="delivery-address">Delivery address:</label>
+                        <label for="delivery-address">Pickup address:</label>
                         <input type="text" id="delivery-address" name="delivery_address" class="custom-date-input">
                     </div>
+
+
                     <button type="submit" class="btn btn-primary mt-2" id="send-request-btn">Send Request</button>
                 </div>  
             </form>

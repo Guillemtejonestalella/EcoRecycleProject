@@ -8,10 +8,15 @@ class Order(models.Model):
     OrderUser = models.ForeignKey(User, on_delete=models.CASCADE)   
     OrderPoints = models.IntegerField()
     OrderStatus = models.CharField(max_length=70, default="Pending approval")
-    OrderHomePickup = models.BooleanField()
+
+    OrderHomePickup = models.BooleanField(null=True, blank=True)
+    OrderDelivery = models.BooleanField(null=True, blank=True) #new
+
     OrderCreationDate = models.DateField() 
-    OrderPickupDate = models.DateField()
+    OrderPickupDate = models.DateField(null=True, blank=True)
+    
     OrderAddress = models.CharField(max_length=150, null=True, blank=True)
+    OrderDeliveryAddress =  models.CharField(max_length=150, null=True, blank=True) #new
     
     def __str__(self): 
         return self.OrderUser.username

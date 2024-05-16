@@ -64,36 +64,37 @@ def create_order(request):
         session_items = request.session.get('session_items', [])
 
         if not session_items:
-            return redirect('requests')  
-        
-        # pickup_date_str = request.POST['pickup_date'];
-        # pickup_date_obj = datetime._parse_isoformat_date(pickup_date_str);
-                
-        # pickup_date_str = request.POST['pickup_date']
-        # pickup_date_obj = datetime.strptime(pickup_date_str, '%Y-%m-%d').date()
-
-        # Obtener la cadena de fecha del formulario
-        # pickup_date_str = request.POST['pickup_date']
-
-        # # Dividir la cadena de fecha en año, mes y día
-        # year, month, day = map(int, pickup_date_str.split('-'))
-
-        # # Crear un objeto date
-        # pickup_date_obj = datetime(year, month, day).date()  
+            return redirect('requests')    
 
         total_points = int(request.POST.get('total_points', 0))   
+
         delivery_address = request.POST.get('delivery_address', '') 
+
+        address_delivery = request.POST.get('address_delivery', '')        
+                
+        home_pickup = 'home_pickup' in request.POST  
+        pick_up_point = 'pick_up_point' in request.POST
         
+        if pick_up_point == False:
+            address_delivery = None
+
+        pickup_date_str = request.POST.get('pickup_date', '') 
+        try:
+            pickup_date = timezone.datetime.strptime(pickup_date_str, "%Y-%m-%d").date()
+        except ValueError:            
+            pickup_date = None    
+       
 
         order = Order(
             OrderUser=user,
             OrderPoints=total_points,            
-            OrderStatus='Pending approval',
-            OrderHomePickup=request.POST['home_pickup'] == 'true',
+            OrderStatus='Pending approval',#revisar
+            OrderHomePickup=home_pickup,   
+            OrderDelivery= pick_up_point, #new         
             OrderCreationDate=timezone.now().date(),
-            OrderPickupDate= timezone.now().date(),
-            # request.POST['pickup_date'],
-            OrderAddress=delivery_address 
+            OrderPickupDate= pickup_date,
+            OrderAddress=delivery_address,            
+            OrderDeliveryAddress=address_delivery
         )
         order.save()
 
@@ -102,11 +103,11 @@ def create_order(request):
                 Order=order,
                 OrderlineItem=item['name'],
                 OrderlineUnits=item.get('units', 1),
-                OrderlineWeight=item.get('weight', 0),
+                OrderlineWeight=item.get('weight', None),
                 OrderlineBrand=item.get('brand', ''),
-                OrderlineHeight=item.get('height', 0),
-                OrderlineDepth=item.get('depth', 0),
-                OrderlineWidth=item.get('width', 0),
+                OrderlineHeight=item.get('height', None),
+                OrderlineDepth=item.get('depth', None),
+                OrderlineWidth=item.get('width', None),
                 OrderlineStatus=item.get('status', 'Pending'),
                 OrderlineObservations=item.get('observations', ''),
                 OrderlinePoints=item['points']
@@ -120,8 +121,7 @@ def create_order(request):
 
 
 
-def requestsHistory(request):
-    return render(request, 'ecoApp/requestsHistory.html')
+
 
 def register(request):
     data = {
@@ -156,6 +156,10 @@ def products(request, category_id=None):
     categories = Category.objects.all()
     brands = [category.CategoryBrands for category in categories]    
     return render(request, 'ecoApp/products.html', {"items": items, "categories": categories, "brands": brands})
+
+
+def requestsHistory(request):    
+    return render(request, 'ecoApp/requestsHistory.html')
 
 
 
