@@ -6,10 +6,47 @@
 <div class="initial-content" style="margin-top: 60px;"> 
     <h2>REQUESTS HISTORY</h2>
     <div class="welcome-user">
-        <h3>Hello {{ request.user.username }}, view your requests here!</h3>
-        <p>Aqui hi haurà el registre de les solicituds que ha realitzat l'usuari i l estat en el que es troben (pendents o acceptades)</p>
+        <h5>Hello {{ request.user.username }}, view your requests here!</h5>     
     </div>  
 </div>
 
+{% if user_requests %}
+    <div class="table-container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Creation Date</th>  
+                    <th>Home Pickup</th>
+                    <th>Delivery</th>
+                    <th>Delivery Address</th>
+                    <th>Address</th>
+                    <th>Pickup Date</th>
+                    <th>Points</th>
+                    <th>Status</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in user_requests %}
+                <tr>
+                    <td>{{ request.OrderCreationDate }}</td> 
+                    <td>{{ request.OrderHomePickup }}</td>
+                    <td>{{ request.OrderDelivery }}</td>
+                    <td>{{ request.OrderDeliveryAddress }}</td>
+                    <td>{{ request.OrderAddress }}</td>
+                    <td>{{ request.OrderPickupDate }}</td>
+                    <td>{{ request.OrderPoints }}</td>
+                    <td>{{ request.OrderStatus }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>                    
+{% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 25vw !important; margin-left: 30px !important; margin-right: -15px !important;">
+        You don't have requests yet.       
+    </div>
+{% endif %}
 
 {% endblock %}
