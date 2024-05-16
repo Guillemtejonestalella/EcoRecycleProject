@@ -90,8 +90,7 @@ def create_order(request):
 
         order = Order(
             OrderUser=user,
-            OrderPoints=total_points,            
-            OrderStatus='Pending approval',#revisar
+            OrderPoints=total_points, 
             OrderHomePickup=home_pickup,   
             OrderDelivery= pick_up_point, #new         
             OrderCreationDate=timezone.now().date(),
