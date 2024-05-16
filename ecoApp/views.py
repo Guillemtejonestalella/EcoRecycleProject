@@ -79,13 +79,14 @@ def create_order(request):
         # year, month, day = map(int, pickup_date_str.split('-'))
 
         # # Crear un objeto date
-        # pickup_date_obj = datetime(year, month, day).date()      
+        # pickup_date_obj = datetime(year, month, day).date()  
+
+        total_points = int(request.POST.get('total_points', 0))    
         
 
         order = Order(
             OrderUser=user,
-            OrderPoints=70,
-            # sum(item['points'] * item.get('units', 1) for item in session_items),
+            OrderPoints=total_points,            
             OrderStatus='Pending approval',
             OrderHomePickup=request.POST['home_pickup'] == 'true',
             OrderCreationDate=timezone.now().date(),

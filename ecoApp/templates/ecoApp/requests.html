@@ -86,7 +86,8 @@
             <form id="form-request" method="post" action="{% url 'create_order' %}">
                 {% csrf_token %}
                 <h2>Total Request</h2>
-                <div class="card-body">                
+                <div class="card-body">   
+                    <input type="hidden" id="total-points-input" name="total_points">             
                     <p>Total Points: <span id="total-points" class="points-total">0</span></p>                
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="home-delivery" onchange="toggleCheckbox('home-delivery', 'pickup-point'); homePickup()">
@@ -173,7 +174,7 @@
             }
         });       
         document.getElementById('total-points').textContent = totalPuntos;
-        
+        document.getElementById('total-points-input').value = totalPuntos;
         
         session.puntos = totalPuntos;
         // print("PUNTOS TOTALESS: " + session)
