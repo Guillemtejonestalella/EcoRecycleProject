@@ -81,7 +81,8 @@ def create_order(request):
         # # Crear un objeto date
         # pickup_date_obj = datetime(year, month, day).date()  
 
-        total_points = int(request.POST.get('total_points', 0))    
+        total_points = int(request.POST.get('total_points', 0))   
+        delivery_address = request.POST.get('delivery_address', '') 
         
 
         order = Order(
@@ -92,7 +93,7 @@ def create_order(request):
             OrderCreationDate=timezone.now().date(),
             OrderPickupDate= timezone.now().date(),
             # request.POST['pickup_date'],
-            OrderAddress="Carrer Urgell 230"  # Asumiendo que el usuario tiene una dirección en su perfil
+            OrderAddress=delivery_address 
         )
         order.save()
 
@@ -111,7 +112,7 @@ def create_order(request):
                 OrderlinePoints=item['points']
             )     
         del request.session['session_items']
-        request.session.modified = True  # Asegurar que Django sabe que la sesión ha cambiado
+        request.session.modified = True 
         return redirect('requestsHistory') 
     
     return redirect('requests')
