@@ -11,7 +11,7 @@
 </div>
 
 {% if user_requests %}
-    <div class="table-container ">
+    <div class="table-container">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,7 +23,7 @@
                     <th>Pickup Date</th>
                     <th>Points</th>
                     <th>Status</th>
-                    
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,12 +37,61 @@
                     <td>{{ request.OrderPickupDate }}</td>
                     <td>{{ request.OrderPoints }}</td>
                     <td>{{ request.OrderStatus }}</td>
-                    
+                    <td class="align-middle">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#orderlines-{{ request.id }}" aria-expanded="false" aria-controls="orderlines-{{ request.id }}">
+                            Toggle Details
+                        </button>
+                    </td>
+                </tr>
+                <tr class="collapse" id="orderlines-{{ request.id }}">
+                    <td colspan="9">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Units</th>
+                                    <th>Weight</th>
+                                    <th>Brand</th>
+                                    <th>Height</th>
+                                    <th>Depth</th>
+                                    <th>Width</th>
+                                    <th>Status</th>
+                                    <th>Observations</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for orderline in request.orderlines.all %}
+                                <tr>
+                                    <td>{{ orderline.OrderlineItem }}</td>
+                                    <td>{{ orderline.OrderlineUnits }}</td>
+                                    <td>{{ orderline.OrderlineWeight }}</td>
+                                    <td>{{ orderline.OrderlineBrand }}</td>
+                                    <td>{{ orderline.OrderlineHeight }}</td>
+                                    <td>{{ orderline.OrderlineDepth }}</td>
+                                    <td>{{ orderline.OrderlineWidth }}</td>
+                                    <td>{{ orderline.OrderlineStatus }}</td>
+                                    <td>{{ orderline.OrderlineObservations }}</td>
+                                    <td>{{ orderline.OrderlinePoints }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>                    
+    </div>     
+    
+    
+
+    <style>
+        .table-container table td, .table-container table th {
+            vertical-align: middle;
+        }
+    </style>
+        
 {% else %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 25vw !important; margin-left: 30px !important; margin-right: -15px !important;">
         You don't have requests yet.       

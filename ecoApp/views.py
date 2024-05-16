@@ -160,8 +160,8 @@ def products(request, category_id=None):
     return render(request, 'ecoApp/products.html', {"items": items, "categories": categories, "brands": brands})
 
 
-def requestsHistory(request):    
-    user_requests = Order.objects.filter(OrderUser=request.user).order_by('-OrderCreationDate')    
+def requestsHistory(request):
+    user_requests = Order.objects.filter(OrderUser=request.user).order_by('-OrderCreationDate').prefetch_related('orderlines')
     return render(request, 'ecoApp/requestsHistory.html', {'user_requests': user_requests})
 
 

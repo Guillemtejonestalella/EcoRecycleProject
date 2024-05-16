@@ -1,12 +1,9 @@
+# models.py
 from django.db import models
-
-# Create your models here.
-
 from order.models import Order
 
-# Create your models here.
 class Orderline(models.Model):
-    Order = models.ForeignKey(Order, on_delete=models.CASCADE)  # Cada Orderline debe tener una Order
+    Order = models.ForeignKey(Order, related_name='orderlines', on_delete=models.CASCADE)  
     OrderlineItem = models.CharField(max_length=70)
     OrderlineUnits = models.IntegerField(null=True, blank=True)
     OrderlineWeight = models.IntegerField(null=True, blank=True)
