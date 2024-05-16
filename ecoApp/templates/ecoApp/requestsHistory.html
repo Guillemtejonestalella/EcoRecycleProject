@@ -36,11 +36,20 @@
                     <td>{{ request.OrderDeliveryAddress }}</td>                    
                     <td>{{ request.OrderPickupDate }}</td>
                     <td>{{ request.OrderPoints }}</td>
-                    <td>{{ request.OrderStatus }}</td>
+                    <td style="{% if request.OrderStatus == 'Accepted' %} color: green; font-weight: bold;{% elif request.OrderStatus == 'Denied' %} color: red; font-weight: bold;{% endif %}">
+                        <strong>{{ request.OrderStatus }}</strong>
+                    </td>
+                    
+                    
+                    
+                    
                     <td class="align-middle">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#orderlines-{{ request.id }}" aria-expanded="false" aria-controls="orderlines-{{ request.id }}">
                             Toggle Details
                         </button>
+                        {% if request.OrderStatus == 'Accepted' %}
+                            <button class="btn btn-success" type="submit">Claim Reward</button>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr class="collapse" id="orderlines-{{ request.id }}">
