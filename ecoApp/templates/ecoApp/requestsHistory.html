@@ -17,10 +17,10 @@
                 <tr>
                     <th>Creation Date</th>  
                     <th>Home Pickup</th>
+                    <th>Pickup Date</th>
                     <th>Address</th>
                     <th>Delivery</th>
-                    <th>Delivery Address</th>                    
-                    <th>Pickup Date</th>
+                    <th>Delivery Address</th>       
                     <th>Points</th>
                     <th>Status</th>
                     <th>Details</th>
@@ -31,10 +31,10 @@
                 <tr>
                     <td>{{ request.OrderCreationDate }}</td> 
                     <td>{% if request.OrderHomePickup %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ request.OrderPickupDate }}</td>
                     <td>{{ request.OrderAddress }}</td>
                     <td>{% if request.OrderDelivery %}Yes{% else %}No{% endif %}</td>
-                    <td>{{ request.OrderDeliveryAddress }}</td>                    
-                    <td>{{ request.OrderPickupDate }}</td>
+                    <td>{{ request.OrderDeliveryAddress }}</td>                       
                     <td>{{ request.OrderPoints }}</td>
                     {% if request.OrderStatus == 'Accepted' %}
                     <td style="color: green; font-weight: bold;"><strong>{{ request.OrderStatus }}</strong></td>
@@ -46,7 +46,7 @@
 
                     <td class="align-middle">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#orderlines-{{ request.id }}" aria-expanded="false" aria-controls="orderlines-{{ request.id }}">
-                            Toggle Details
+                            Show Details
                         </button>                        
                     </td>
                 </tr>

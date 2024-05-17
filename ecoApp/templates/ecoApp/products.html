@@ -290,7 +290,21 @@
                 'depth': $('#depth').val()
               };
               $('#itemData').val(JSON.stringify(itemData));
-            }   
+            } else if (itemCategory === 'Furniture'){
+                var itemData = {
+                  'units': $('#itemUnits').val(),
+                  'name': itemName,
+                  'points': itemPoints,
+                  'category': itemCategory,                  
+                  'status': $('#itemStatus').val(),
+                  'observations': $('#observations').val(),
+                  'weight': $('#weight').val(),
+                  'length': $('#length').val(),
+                  'width': $('#width').val(),
+                  'depth': $('#depth').val()
+                };
+                $('#itemData').val(JSON.stringify(itemData));
+            }
           });
       });
   });
