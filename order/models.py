@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-
 class Order(models.Model): 
     OrderUser = models.ForeignKey(User, on_delete=models.CASCADE)   
     OrderPoints = models.IntegerField()
