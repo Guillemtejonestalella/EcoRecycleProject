@@ -11,10 +11,9 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
         user.profile.ProfilePoints += instance.OrderPoints
         user.profile.save()
 
-        #Correu electronic automatic 
+        #Correu electronic automatic Acceptacio
         send_mail(
-            subject='Your order has been ACCEPTED',
-            # message= 'Hello user, your order has been accepted!',
+            subject='Your order has been ACCEPTED',            
             message=f'Dear user,\n\nYour request has been accepted! You have been awarded {instance.OrderPoints} points.\n\nThank you for your order!',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[user.email],
@@ -23,9 +22,9 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
     elif instance.OrderStatus == 'Denied':
         user = instance.OrderUser
         user.profile.save()
+         #Correu electronic automatic Denegacio
         send_mail(
-            subject='Your order has been DENIED',
-            # message= 'Hello user, your order has been denied!',
+            subject='Your order has been DENIED',            
             message=f'Dear user,\n\nYour request has been denied!\n\nResend your request!',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[user.email],
@@ -34,9 +33,9 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
     elif instance.OrderStatus == 'Pending approval':
         user = instance.OrderUser
         user.profile.save()
+         #Correu electronic automatic Enviament 
         send_mail(
-            subject='Your order has been sended',
-            # message= 'Hello user, your request has been submitted successfully. Wait to receive the acceptance or denial email. Thank you so much!',
+            subject='Your order has been sended',           
             message=f'Dear user,\n\nYour request has been submitted successfully. Wait to receive the acceptance or denial email.\n\nThank you for your order!',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[user.email],
