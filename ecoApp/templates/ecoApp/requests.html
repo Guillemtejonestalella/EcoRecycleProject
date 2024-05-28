@@ -211,8 +211,7 @@
         document.getElementById('total-points').textContent = totalPuntos;
         document.getElementById('total-points-input').value = totalPuntos;
         
-        session.puntos = totalPuntos;
-        // print("PUNTOS TOTALESS: " + session)
+        session.puntos = totalPuntos;        
     }   
     function homePickup() {
         var checkBox = document.getElementById('home-delivery');
@@ -221,11 +220,20 @@
 
         if (checkBox.checked) {
             dateInputContainer.style.display = 'block';
-            pickUpList.style.display = 'none'; 
+            if (pickUpList) pickUpList.style.display = 'none'; 
         } else {
             dateInputContainer.style.display = 'none';
         }
     }
+    flatpickr("#pickup-date", {
+        minDate: "today",
+        disable: [
+            function(date) {                
+                return (date.getDay() === 0 || date.getDay() === 6);
+            }
+        ],
+        dateFormat: "Y-m-d",
+    });
     function pickUpPoint() {
         var checkBox = document.getElementById('pickup-point');
         var pickUpList = document.getElementById('pickup-list');
