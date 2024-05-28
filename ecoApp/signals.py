@@ -5,18 +5,39 @@ from django.conf import settings
 from order.models import Order
 
 @receiver(post_save, sender=Order)
-def update_user_points_and_send_email(sender, instance, **kwargs):
+def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza els punts de l'usuari i envia correu de confirmacio.
     if instance.OrderStatus == 'Accepted':
-        user = instance.OrderUser
-        # Actualizar puntos del usuario
+        user = instance.OrderUser        
         user.profile.ProfilePoints += instance.OrderPoints
         user.profile.save()
 
-        # Enviar correo electrónico
+        #Correu electronic automatic 
         send_mail(
-            subject='Your Order Has Been Accepted',
-            message= 'Hello {user.username}, your order has been accepted!',
-            # message=f'Dear {user.username},\n\nYour order with ID {instance.id} has been accepted. You have been awarded {instance.OrderPoints} points.\n\nThank you for your order!',
+            subject='Your order has been ACCEPTED',
+            # message= 'Hello user, your order has been accepted!',
+            message=f'Dear user,\n\nYour request has been accepted! You have been awarded {instance.OrderPoints} points.\n\nThank you for your order!',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
+    elif instance.OrderStatus == 'Denied':
+        user = instance.OrderUser
+        user.profile.save()
+        send_mail(
+            subject='Your order has been DENIED',
+            # message= 'Hello user, your order has been denied!',
+            message=f'Dear user,\n\nYour request has been denied!\n\nResend your request!',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
+    elif instance.OrderStatus == 'Pending approval':
+        user = instance.OrderUser
+        user.profile.save()
+        send_mail(
+            subject='Your order has been sended',
+            # message= 'Hello user, your request has been submitted successfully. Wait to receive the acceptance or denial email. Thank you so much!',
+            message=f'Dear user,\n\nYour request has been submitted successfully. Wait to receive the acceptance or denial email.\n\nThank you for your order!',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[user.email],
             fail_silently=False,
