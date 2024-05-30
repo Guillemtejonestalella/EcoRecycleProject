@@ -126,11 +126,11 @@
                 </div>
                 <div class="card-body collapse show" id="requestDetails">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div id="units-div" class="col-md-2">
                             <label><strong>Units:</strong></label>
                             <input type="number" value="1" min="1" class="form-control" id="itemUnits">
                         </div>
-                        <div  id="weight-div" class="col-md-2">
+                        <div  id="weight-div" class="col-md-2" style="width: 30%;">
                             <label><strong>Weight (kg):</strong></string></label>
                             <input type="number" value="0" class="form-control" id="weight">
                         </div>
@@ -178,7 +178,7 @@
                                 <option value="Used">Used</option>
                             </select>
                         </div>
-                        <div id="points-div"  class="col-md-2">
+                        <div id="points-div"  class="col-md-2" style="width: 30%;">
                             <label><strong>Points:</strong></label>   
                             <span class="form-control" id="modalItemPoints">Item Points</span>
                             <!-- <h3 id="modalItemName">Item Name</h3> -->
@@ -264,7 +264,19 @@
           } else {
               $('#dimension-div').show();
               $('#weight-div').show();              
-          }              
+          }          
+
+          if (itemCategory === 'Plastic' || itemCategory === 'Glass' || itemCategory === 'Cardboard' || itemCategory === 'Metal') {
+              $('#brand-div').hide();
+              $('#dimension-div').hide();
+              $('#status-div').hide();
+              $('#units-div').hide();
+          } else {
+              $('#brand-div').show();
+              $('#dimension-div').show();
+              $('#status-div').show();
+              $('#units-div').show();
+          }    
           
           $('form').submit(function(event) {  
 
@@ -306,6 +318,27 @@
                   'length': $('#length').val(),
                   'width': $('#width').val(),
                   'depth': $('#depth').val()
+                };
+                $('#itemData').val(JSON.stringify(itemData));
+            } else if (itemCategory === 'Toys'){
+                var itemData = {
+                  'units': $('#itemUnits').val(),
+                  'name': itemName,
+                  'points': itemPoints,
+                  'category': itemCategory,                  
+                  'status': $('#itemStatus').val(),
+                  'observations': $('#observations').val(),
+                  'weight': $('#weight').val()                  
+                };
+                $('#itemData').val(JSON.stringify(itemData));
+
+            } else { //materials
+                var itemData = {                  
+                  'name': itemName,
+                  'points': itemPoints,
+                  'category': itemCategory,                  
+                  'observations': $('#observations').val(),
+                  'weight': $('#weight').val()                
                 };
                 $('#itemData').val(JSON.stringify(itemData));
             }
