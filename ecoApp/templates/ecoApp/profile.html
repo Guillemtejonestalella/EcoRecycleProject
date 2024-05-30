@@ -19,7 +19,10 @@
                         <a class="btn btn-outline-danger" href="{% url 'delete_user' user.id %}"><i class="fa-solid fa-lock"></i>Delete account</a>
                         {% if messages %}                            
                             {% for message in messages %}
-                                <h4 {% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align: center; color:#2e6c2596;"">{{ message }}</h4>
+                            <div style="margin-top: 30px;">
+                                <h4 {% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align: center; color:#2e6c2596;">{{ message }}</h4>
+                            </div>
+                               
                             {% endfor %}                            
                         {% endif %}
                     </table>

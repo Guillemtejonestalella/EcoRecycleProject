@@ -26,7 +26,7 @@
       
         <div class="col-2">   
           <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active menu-button" aria-current="true">
+            <button type="button" class="btn btn-success shadow select-button" aria-current="true">
               Menu
             </button>
               {% for category in categories %}
@@ -34,7 +34,12 @@
                   {{ category }}
                 </a>
               {% endfor %}                     
-          </div>             
+          </div>  
+          
+          <div style="margin-top: 10px;  text-align: center;">
+            <!-- <button class="btn btn-success">Clear filters</button> -->
+            <a class="link" href="{% url 'products' %}">Clear filters</a>
+          </div>
         </div>       
 
         <div class="col-10">
