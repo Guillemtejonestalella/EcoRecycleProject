@@ -19,6 +19,17 @@
     {% endif %}    
 </div>
 
+<div class="info-content">
+  <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#infoText" aria-expanded="false" aria-controls="infoText">
+      How it works?
+  </button>
+  <div id="infoText" class="collapse mt-3">
+      <div class="card card-body">
+          Text informatiu sobre el funcionament de la pagina actual
+      </div>
+  </div>
+</div>
+
 
 <!-- llista tots els items -->
 <div class="products-div">
@@ -102,6 +113,7 @@
             width: 100%;           
 
           }
+          
         </style>
       </div>  
 </div>
@@ -120,7 +132,7 @@
               {% if request.user.is_authenticated %}                         
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">                      
-                      <h3 id="modalItemName" name="new_item1">Item Name</h3> <!--modif--> 
+                      <h3 id="modalItemName" name="new_item1">Item Name</h3> 
                       <!-- Item Name s'omple amb JS (script d'abaix) -->                    
                     </div>
                 </div>
@@ -205,24 +217,14 @@
             <input type="hidden" id="itemData" name="item_data">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Add Item</button>
-          </form>
-
-          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add Item</button> -->
-        </div>
-
-        
+          </form>          
+        </div>        
 
       </div>
     </div>
   </div>
 </div>
 
-<!-- <form method="post" action="{% url 'requests' %}">
-  {% csrf_token %}
-  <input type="text" name="new_item">
-  <button type="submit">Add</button>
-</form> -->
 
 
 <!--Aquest script l'utilizo per passar la informacio de l'item que hem seleccionat cap al modal. Ja que sino desde el modal no puc accedir-->

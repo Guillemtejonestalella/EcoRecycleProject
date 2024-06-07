@@ -287,6 +287,13 @@ body {
 }
 
 
+.info-content{
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+    animation: fade-up 0.7s; 
+}
+
+
 
 
 
