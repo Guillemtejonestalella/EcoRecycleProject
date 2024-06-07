@@ -106,9 +106,7 @@
                             </div>                            
                         {% endif %}
 
-                        {% if item.category == 'Plastic' or item.category == 'Glass' or item.category == 'Metal' or item.category == 'Cardboard' %} 
-                        
-                        <!-- || item.category == 'Glass' item.category == 'Metal' item.category == 'Cardboard' -->
+                        {% if item.category == 'Plastic' or item.category == 'Glass' or item.category == 'Metal' or item.category == 'Cardboard' %}  
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
                                     <h2 class="card-title mb-4">{{ item.name }}</h2>
@@ -135,9 +133,7 @@
                         {% endif %}
 
 
-                        {% if item.category == 'Toys' %} 
-                        
-                        <!-- || item.category == 'Glass' item.category == 'Metal' item.category == 'Cardboard' -->
+                        {% if item.category == 'Toys' %}   
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
                                     <h2 class="card-title mb-4">{{ item.name }}</h2>
@@ -239,39 +235,10 @@
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
     }
 
-    /* .custom-date-input::-webkit-calendar-picker-indicator {
-        filter: invert(100%); 
-    } */
 
 </style>
 
-<script>    
-    // function calcularPuntosTotales() {
-    //     var totalPuntos = 0;        
-    //     var solicitudes = document.querySelectorAll('.request-container');       
-    //     var unidades, puntos;
-        
-    //     solicitudes.forEach(function(solicitud) {            
-    //         var elementosP = solicitud.querySelectorAll('p');  
-
-    //         elementosP.forEach(function(elemento) {                
-    //             if (elemento.textContent.includes("Units")) {
-    //                 unidades = parseInt(elemento.textContent.split(":")[1].trim());
-    //             }
-    //             if (elemento.textContent.includes("Points")) {
-    //                 puntos = parseInt(elemento.textContent.split(":")[1].trim());
-    //             }
-    //         });
-    //         if (!isNaN(unidades) && !isNaN(puntos)) {
-    //             totalPuntos += unidades * puntos;
-    //         }
-    //     });       
-    //     document.getElementById('total-points').textContent = totalPuntos;
-    //     document.getElementById('total-points-input').value = totalPuntos;
-        
-    //     session.puntos = totalPuntos;        
-    // }   
-
+<script> 
     function calcularPuntosTotales() {
         var totalPuntos = 0;        
         var solicitudes = document.querySelectorAll('.request-container');       
