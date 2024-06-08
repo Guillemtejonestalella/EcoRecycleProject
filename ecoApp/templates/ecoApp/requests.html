@@ -279,32 +279,43 @@
         var totalPuntos = 0;        
         var solicitudes = document.querySelectorAll('.request-container');       
         var unidades, puntos;
-        
-        solicitudes.forEach(function(solicitud) {            
-            var elementosP = solicitud.querySelectorAll('p');  
 
-            elementosP.forEach(function(elemento) {     
-                if (elemento.textContent.includes("Units")) {
-                    unidades = parseInt(elemento.textContent.split(":")[1].trim());
-                }else{
-                    if (elemento.textContent.includes("Weight")){
+        solicitudes.forEach(function(solicitud) {             
+            var elementosP = solicitud.querySelectorAll('p');  
+            var isMaterial = false;
+            
+            elementosP.forEach(function(elemento) {
+                if (elemento.textContent.includes("Plastic") || elemento.textContent.includes("Glass") || elemento.textContent.includes("Metal") || elemento.textContent.includes("Cardboard")) {
+                    isMaterial = true;
+                }
+            });
+
+            elementosP.forEach(function(elemento) {  
+                if (isMaterial) {
+                    if (elemento.textContent.includes("Weight")) {
+                        unidades = parseInt(elemento.textContent.split(":")[1].trim());
+                    }
+                } else {
+                    if (elemento.textContent.includes("Units")) {
                         unidades = parseInt(elemento.textContent.split(":")[1].trim());
                     }
                 }
-
                 if (elemento.textContent.includes("Points")) {
                     puntos = parseInt(elemento.textContent.split(":")[1].trim());
                 }
             });
+
             if (!isNaN(unidades) && !isNaN(puntos)) {
                 totalPuntos += unidades * puntos;
             }
-        });       
+        });
+
         document.getElementById('total-points').textContent = totalPuntos;
         document.getElementById('total-points-input').value = totalPuntos;
         
         session.puntos = totalPuntos;        
-    }   
+    }               
+    
     function homePickup() {
         var checkBox = document.getElementById('home-delivery');
         var dateInputContainer = document.getElementById('date-input-container');
