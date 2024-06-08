@@ -12,8 +12,8 @@
       <div class="welcome-user">
         <h5>Hello {{user}}, you have {{ user.profile.ProfilePoints }} points!</h5>
         <div class="info-content">
-            <p>Help</p>
-            <span class="material-icons ">person</span>
+            <p>Do you need help?</p>
+            <span class="material-symbols-outlined" style="color:  rgba(47, 79, 79, 0.74);">info</span>
         </div>
     </div>
     {% else %}
@@ -107,8 +107,17 @@
           .select-button{
             width: 100%;           
 
-          }
+          }                
           
+          .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+          }
+
+
         </style>
       </div>  
 </div>
@@ -219,6 +228,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
 
 
 

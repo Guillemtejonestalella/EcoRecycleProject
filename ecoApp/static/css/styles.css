@@ -300,11 +300,11 @@ body {
 }
 
 .info-content p {    
-    color: #000000; 
+    color: rgba(47, 79, 79, 0.74);
     font-size: 16px; 
     font-weight: bold;  
     margin-right: 4px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     
 }
 
