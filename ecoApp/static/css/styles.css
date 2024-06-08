@@ -238,6 +238,10 @@ body {
     animation: fade-up 0.7s; 
     padding-bottom: 10px;
     padding-left: 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .products-div{
     animation: fade-up 0.7s; 
@@ -288,10 +292,23 @@ body {
 
 
 .info-content{
+    display: flex;
     margin-left: 30px !important;
-    margin-right: 30px !important;
+    
+    margin-right: 40px !important;
     animation: fade-up 0.7s; 
 }
+
+.info-content p {    
+    color: #000000; 
+    font-size: 16px; 
+    font-weight: bold;  
+    margin-right: 4px;
+    text-decoration: underline;
+    
+}
+
+
 
 
 
