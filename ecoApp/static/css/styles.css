@@ -310,6 +310,12 @@ body {
 }
 
 
+.info-content p:hover {    
+    color: rgba(87, 131, 95, 0.74);  
+    
+}
+
+
 
 
 
