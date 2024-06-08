@@ -95,9 +95,6 @@ body {
     transition: .3s;
 }
 
-
-
-
 .account-name h4{
     color: white !important;
     font-weight: 100;
@@ -262,8 +259,8 @@ body {
     view-timeline-name: --col;
     view-timeline-axis: block;
     animation-timeline: --col;
-    animation-name: show;
-    animation-range: entry 25% cover 50%;
+    animation-name: show;    
+    animation-range: entry 1%;
 }
 
 .web-slogan {
