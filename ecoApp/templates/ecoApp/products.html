@@ -268,11 +268,10 @@
 </div>
 
 
-
 <!--Aquest script l'utilizo per passar la informacio de l'item que hem seleccionat cap al modal. Ja que sino desde el modal no puc accedir-->
 <script>
 
-
+  //Assignacio de variables en funcio del id de l'item, amagar camps en funcio de la categpria i creació d'estructura de dades que es guarda.
   $(document).ready(function(){
       //visualització dels menus desplegables i assignació de variables en funció del "id"
       $('.select-button').click(function(){
@@ -442,7 +441,6 @@
       });
   });
 
-  
   //comprova si els camps del modal actual estan omplerts correctament (que siguin valids per a enviar-los)
   document.getElementById('addItemButton').addEventListener('click', function(event) {
     const fields = [ //possibles camps a comprovar
