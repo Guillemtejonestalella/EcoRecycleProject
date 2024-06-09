@@ -205,8 +205,8 @@
                         <input type="date" id="pickup-date" name="pickup_date" class="custom-date-input">
                         <br><br>
                         
-                        <label for="delivery-address">Pickup address:</label>
-                        <input type="text" id="delivery-address" name="delivery_address" class="custom-date-input">
+                        <label for="pickup-address">Pickup address:</label>
+                        <input type="text" id="pickup-address" name="delivery_address" class="custom-date-input">
                     </div>
 
 
@@ -275,6 +275,8 @@
 </style>
 
 <script> 
+
+    //Calcula els punts totals de tota la solicitud (suma dels punts de cada item, tenint en compte les unitats i punts de categoria, o be, el pes i els punts de categoria)
     function calcularPuntosTotales() {
         var totalPuntos = 0;        
         var solicitudes = document.querySelectorAll('.request-container');       
@@ -284,6 +286,7 @@
             var elementosP = solicitud.querySelectorAll('p');  
             var isMaterial = false;
             
+            //comprova si l'item es un material (Ja que no es calculen els punts en funcio de les unitats sino en funcio del pes)
             elementosP.forEach(function(elemento) {
                 if (elemento.textContent.includes("Plastic") || elemento.textContent.includes("Glass") || elemento.textContent.includes("Metal") || elemento.textContent.includes("Cardboard")) {
                     isMaterial = true;
@@ -291,21 +294,21 @@
             });
 
             elementosP.forEach(function(elemento) {  
-                if (isMaterial) {
+                if (isMaterial) { //si es un material, es calcules els punts de l'item en funció del pes i els punts de la categoria (extracció del pes)
                     if (elemento.textContent.includes("Weight")) {
                         unidades = parseInt(elemento.textContent.split(":")[1].trim());
                     }
-                } else {
+                } else { //si no es un material, es tenen en compte les unitats i els punts de la categoria (extracció de les unitats)
                     if (elemento.textContent.includes("Units")) {
                         unidades = parseInt(elemento.textContent.split(":")[1].trim());
                     }
-                }
+                } //extracció dels punts de la categoria
                 if (elemento.textContent.includes("Points")) {
                     puntos = parseInt(elemento.textContent.split(":")[1].trim());
                 }
             });
 
-            if (!isNaN(unidades) && !isNaN(puntos)) {
+            if (!isNaN(unidades) && !isNaN(puntos)) { //calcul final dels punts totals de la solicitud
                 totalPuntos += unidades * puntos;
             }
         });
@@ -313,9 +316,10 @@
         document.getElementById('total-points').textContent = totalPuntos;
         document.getElementById('total-points-input').value = totalPuntos;
         
-        session.puntos = totalPuntos;        
+        session.puntos = totalPuntos;   //es guarden els punts totals a la sesio d'usuari     
     }               
     
+    //Mostra els caps determinats en funció del checkbox seleccionat:
     function homePickup() {
         var checkBox = document.getElementById('home-delivery');
         var dateInputContainer = document.getElementById('date-input-container');
@@ -328,6 +332,9 @@
             dateInputContainer.style.display = 'none';
         }
     }
+    
+    
+    //Controla els dies disponibles per seleccionar en cas que sigui una recollida a casa. (Dies anteriors al dia actual no es poden seleccionar i tampoc els caps de setmana)
     flatpickr("#pickup-date", {
         minDate: "today",
         disable: [
@@ -337,6 +344,8 @@
         ],
         dateFormat: "Y-m-d",
     });
+    
+    //Mostra els caps determinats en funció del checkbox seleccionat:
     function pickUpPoint() {
         var checkBox = document.getElementById('pickup-point');
         var pickUpList = document.getElementById('pickup-list');
@@ -349,6 +358,8 @@
             pickUpList.style.display = 'none';
         }
     }
+    
+    //Controla que únicament un dels 2 checkbox pugui estar seleccionat alhora:
     function toggleCheckbox(id, otherId) {
         var checkbox = document.getElementById(id);
         var otherCheckbox = document.getElementById(otherId);
@@ -357,9 +368,47 @@
         }
     }
 
+    //execució de la funció "CalcularPunts" cada cop que la pàgina recarrega:
     window.onload = function() {
         calcularPuntosTotales();
     };
+
+
+    //Comprovació de elements buits (errors en cas de que les dades no estiguin ben introduides)
+    document.getElementById('send-request-btn').addEventListener('click', function(event) {
+
+        //comprovacio dels checkbox (que almenys un d'ells estigui seleccionat):
+        const homeDeliveryChecked = document.getElementById('home-delivery').checked;
+        const pickupPointChecked = document.getElementById('pickup-point').checked;
+        
+        if (!homeDeliveryChecked && !pickupPointChecked) {
+            alert("Please select at least one delivery option.");
+            event.preventDefault(); 
+            return; 
+        }
+
+        //Comprovacio dels camps "pickup-address" i "pickup-date" en cas que el checkbox "homeDeliveryChecked" estigui seleccionat:
+        const fields = [ //possibles camps a comprovar        
+            'pickup-address',
+            'pickup-date'        
+        ];
+        let error = false;
+        fields.forEach(fieldId => {
+            const field = document.getElementById(fieldId); //es busca l'element
+
+            //si existeix i es visible actualment, comprova que no sigui "null":
+            if (field && field.offsetParent !== null && (field.value === "" )) {   //field.offsetParent !== null  -> Comprova si el camp amb id=id(field) està ocult o no. Per saber si l'ha de comprovar.
+                error = true; //si està visible i està buit, dona error
+            }
+        });
+
+        if (error) {
+            alert("All visible fields must be filled out with correct Units, Weight, and Dimensions and must be greater than zero."); 
+            event.preventDefault();
+        }
+    });
+
+
 </script>
 
 {% endblock %}

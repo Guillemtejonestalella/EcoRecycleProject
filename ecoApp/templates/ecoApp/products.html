@@ -11,7 +11,7 @@
     {% if request.user.is_authenticated %}
       <div class="welcome-user">
         <h5>Hello {{user}}, you have {{ user.profile.ProfilePoints }} points!</h5>
-        <div class="info-content">
+        <div class="info-content"> <!--Modal informatiu sobre el funcionament de la pagina actual-->
             <p data-bs-toggle="modal" data-bs-target="#infoModal">Do you need help?</p>
             <span class="material-symbols-outlined" style="color:  rgba(47, 79, 79, 0.74);">info</span>
         </div>
@@ -22,8 +22,6 @@
         </div>
     {% endif %}    
 </div>
-
-
 
 
 <!-- llista tots els items -->
@@ -46,7 +44,7 @@
           
           <div style="margin-top: 10px;  text-align: center; display: flex; justify-content: center;">            
             <a class="link" href="{% url 'products' %}" style="color: rgba(47, 79, 79, 0.74);; text-align: center; font-weight: bold; ">Clear filters</a>
-            <span class="material-symbols-outlined" style="color:  rgba(47, 79, 79, 0.74); margin-left: 5px;" >tune</span>
+            <span class="material-symbols-outlined" style="color:  rgba(47, 79, 79, 0.74); margin-left: 5px;" >sort</span>
           </div>
         </div>    
         
