@@ -104,10 +104,10 @@ def create_order(request):
             Orderline.objects.create(
                 Order=order,
                 OrderlineItem=item['name'],
-                OrderlineUnits=item.get('units', 1),
-                OrderlineWeight=item.get('weight', None),
+                OrderlineUnits=item.get('units') or None,
+                OrderlineWeight=item.get('weight') or None,
                 OrderlineBrand=item.get('brand', '-'),
-                OrderlineHeight=item.get('height', None),
+                OrderlineHeight=item.get('length', None),
                 OrderlineDepth=item.get('depth', None),
                 OrderlineWidth=item.get('width', None),
                 OrderlineStatus=item.get('status', 'None'),
