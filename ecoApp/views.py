@@ -110,7 +110,7 @@ def create_order(request):
                 OrderlineHeight=item.get('height', None),
                 OrderlineDepth=item.get('depth', None),
                 OrderlineWidth=item.get('width', None),
-                OrderlineStatus=item.get('status', 'Pending'),
+                OrderlineStatus=item.get('status', 'None'),
                 OrderlineObservations=item.get('observations', ''),
                 OrderlinePoints=item['points']
             )     

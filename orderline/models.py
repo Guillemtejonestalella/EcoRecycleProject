@@ -11,7 +11,7 @@ class Orderline(models.Model):
     OrderlineHeight = models.IntegerField(null=True, blank=True)
     OrderlineDepth = models.IntegerField(null=True, blank=True)
     OrderlineWidth = models.IntegerField(null=True, blank=True)
-    OrderlineStatus = models.CharField(max_length=70)
+    OrderlineStatus = models.CharField(max_length=70, null=True, blank=True)
     OrderlineObservations = models.CharField(max_length=300, null=True, blank=True)
     OrderlinePoints = models.IntegerField()
     
