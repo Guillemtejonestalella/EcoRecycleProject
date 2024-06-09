@@ -145,11 +145,11 @@
                     <div class="row">
                         <div id="units-div" class="col-md-2" style="width: 30%;">
                             <label><strong>Units:</strong></label>
-                            <input type="number" value="1" min="1" class="form-control" id="itemUnits">
+                            <input type="number" value="1" min="1" class="form-control" id="itemUnits" >
                         </div>
                         <div  id="weight-div" class="col-md-2" style="width: 40%;">
                             <label><strong>Weight (kg):</strong></string></label>
-                            <input type="number" value="0" class="form-control" id="weight">
+                            <input type="number"  placeholder="Weight" class="form-control" id="weight" min="0" >
                         </div>
                         <div id="brand-div"  class="col-md-2" style="width: 30%;">
                           <label><strong>Brand:</strong></label>    
@@ -166,7 +166,7 @@
                                       <div class="d-flex align-items-center">
                                           <p class="m-0" >Length&nbsp;</p>
                                       </div>                                      
-                                      <input type="number" value="0" placeholder="Length" class="form-control" id="length">
+                                      <input type="number"  placeholder="Length" class="form-control" id="length" min="0" >
                                   </div>
                               </div>
                               <div class="col-md-4">
@@ -174,7 +174,7 @@
                                       <div class="d-flex align-items-center">
                                           <p class="m-0" >Width&nbsp;</p>
                                       </div>                                      
-                                      <input type="number" value="0" placeholder="Width" class="form-control" id="width">
+                                      <input type="number"  placeholder="Width" class="form-control" id="width" min="0" >
                                   </div>
                               </div>
                               <div class="col-md-4">
@@ -182,7 +182,7 @@
                                       <div class="d-flex align-items-center">
                                           <p class="m-0" >Depth&nbsp;</p>
                                       </div>                                      
-                                      <input type="number" value="0" placeholder="Depth" class="form-control" id="depth">
+                                      <input type="number"  placeholder="Depth" class="form-control" id="depth" min="0" >
                                   </div>
                               </div>
                           </div>
@@ -216,12 +216,12 @@
         </div>
 
         <div class="modal-footer">
-          <form method="post" action="{% url 'requests' %}">
+          <form id="itemForm" method="post" action="{% url 'requests' %}">
             {% csrf_token %}
             <!-- <input type="text" name="new_item"> -->
             <input type="hidden" id="itemData" name="item_data">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Item</button>
+            <button type="submit" class="btn btn-primary" id="addItemButton">Add Item</button>  
           </form>          
         </div>        
 
@@ -267,8 +267,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 
@@ -395,6 +393,26 @@
           });
       });
   });
+
+  
+  document.getElementById('addItemButton').addEventListener('click', function(event) {    
+    const itemUnits = document.getElementById('itemUnits').value;
+    const weight = document.getElementById('weight').value;
+    const itemBrands = document.getElementById('itemBrands').value;
+    const length = document.getElementById('length').value;
+    const width = document.getElementById('width').value;
+    const depth = document.getElementById('depth').value;  
+
+  
+    if (itemUnits === "" || weight === "" || itemBrands === "" || length === "" || width === "" || depth === "" || itemUnits <= 0 || weight <= 0 || length <= 0 || width <= 0 || depth <= 0) {
+      alert("All fields must be filled out with correct Units, Weight, and Dimensions");
+      event.preventDefault();
+    }     
+
+  });  
+
+
+  
 </script>
 
 
