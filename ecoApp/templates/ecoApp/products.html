@@ -166,7 +166,7 @@
                                       <div class="d-flex align-items-center">
                                           <p class="m-0" >Length&nbsp;</p>
                                       </div>                                      
-                                      <input type="number"  placeholder="Length" class="form-control" id="length" min="0" >
+                                      <input type="number"  placeholder="Length" class="form-control" id="length"  min="0">
                                   </div>
                               </div>
                               <div class="col-md-4">
@@ -174,7 +174,7 @@
                                       <div class="d-flex align-items-center">
                                           <p class="m-0" >Width&nbsp;</p>
                                       </div>                                      
-                                      <input type="number"  placeholder="Width" class="form-control" id="width" min="0" >
+                                      <input type="number"  placeholder="Width" class="form-control" id="width" min="0">
                                   </div>
                               </div>
                               <div class="col-md-4">
@@ -182,7 +182,7 @@
                                       <div class="d-flex align-items-center">
                                           <p class="m-0" >Depth&nbsp;</p>
                                       </div>                                      
-                                      <input type="number"  placeholder="Depth" class="form-control" id="depth" min="0" >
+                                      <input type="number"  placeholder="Depth" class="form-control" id="depth" min="0">
                                   </div>
                               </div>
                           </div>
@@ -272,11 +272,15 @@
 
 <!--Aquest script l'utilizo per passar la informacio de l'item que hem seleccionat cap al modal. Ja que sino desde el modal no puc accedir-->
 <script>
+
+
   $(document).ready(function(){
+      //visualització dels menus desplegables i assignació de variables en funció del "id"
       $('.select-button').click(function(){
           var itemName = $(this).data('item-name'); 
           var itemPoints = $(this).data('item-points');
-          var itemCategory = $(this).data('item-category');          
+          var itemCategory = $(this).data('item-category');  
+
           var itemBrandText = $(this).data('item-brand'); //obtinc les marques de la categoria en format ['brand1','brand2','brand3']          
          
           var cleanText = itemBrandText.replace(/^\[|\]$/g, ''); //elimino [] i ''         
@@ -292,9 +296,11 @@
          
           $.each(itemBrand, function(index, value) { //omplo el select amb les opcions de la llista nova              
               value = value.replace(/^'|'$/g, ''); //torno a eliminar ''
-              $('.form-select').append('<option>' + value.trim() + '</option>');  //afegeixo les opcions en els selects amb class= .form-select
+              $('.form-select').append('<option>' + value.trim() + '</option>');  //afegeixo les opcions en els selects amb class = .form-select  (La llista ja esta creada correctament)
           });
 
+
+          //Amagar o enseñar els camps a omplir del modal en funció de la categoria del item.
           if (itemCategory === 'Furniture') {
               $('#brand-div').hide();
           } else {
@@ -326,6 +332,9 @@
               $('#units-div').show();
           }  
           
+
+
+          //Creació d'esctructura de dades "itemData" que s'envia per a poder veure la informació a la pantalla de "In Progress Requests" (Es crea en funció de la categoria de l'item)
           $('form').submit(function(event) {  
 
             if (itemCategory === 'Electronic device') {
@@ -380,7 +389,7 @@
                 };
                 $('#itemData').val(JSON.stringify(itemData));
 
-            } else { //materials
+            } else { //materials (Metal, Cardboard, Plastic, Glass)
                 var itemData = {                  
                   'name': itemName,
                   'points': itemPoints,
@@ -392,25 +401,74 @@
             }
           });
       });
+
+      
+      //Verificació (test) de que les dades introduides per l'usuari no siguin numeros negatius o bé "0" (No es permeten enviar valors "0" o negatius)
+      $('#itemUnits').on('change', function() {
+        var itemUnitsValue = parseFloat($(this).val());
+        if (itemUnitsValue < 1 ) {
+          $(this).val(1); 
+        }
+      });      
+
+      $('#length').on('change', function() {
+        var lengthValue = parseFloat($(this).val());
+        if (lengthValue < 1 ) {
+          $(this).val(1); 
+        }
+      });      
+
+        
+      $('#width').on('change', function() {
+        var widthValue = parseFloat($(this).val());
+        if (widthValue < 1 ) {
+          $(this).val(1); 
+        }
+      });
+
+
+      $('#depth').on('change', function() {
+        var depthValue = parseFloat($(this).val());
+        if (depthValue < 1) {
+          $(this).val(1); 
+        }
+      });
+
+
+      $('#weight').on('change', function() {
+        var weightValue = parseFloat($(this).val());
+        if (weightValue < 1) {
+          $(this).val(1); 
+        }   
+      });
   });
 
   
-  document.getElementById('addItemButton').addEventListener('click', function(event) {    
-    const itemUnits = document.getElementById('itemUnits').value;
-    const weight = document.getElementById('weight').value;
-    const itemBrands = document.getElementById('itemBrands').value;
-    const length = document.getElementById('length').value;
-    const width = document.getElementById('width').value;
-    const depth = document.getElementById('depth').value;  
+  //comprova si els camps del modal actual estan omplerts correctament (que siguin valids per a enviar-los)
+  document.getElementById('addItemButton').addEventListener('click', function(event) {
+    const fields = [ //possibles camps a comprovar
+        'itemUnits',
+        'weight',
+        'itemBrands',
+        'length',
+        'width',
+        'depth'
+    ];
+    let error = false;
+    fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId); //es busca l'element
 
-  
-    if (itemUnits === "" || weight === "" || itemBrands === "" || length === "" || width === "" || depth === "" || itemUnits <= 0 || weight <= 0 || length <= 0 || width <= 0 || depth <= 0) {
-      alert("All fields must be filled out with correct Units, Weight, and Dimensions");
-      event.preventDefault();
-    }     
+        //si existeix i es visible actualment, comprova que no sigui "null":
+        if (field && field.offsetParent !== null && (field.value === "" || parseFloat(field.value) <= 0)) {   //field.offsetParent !== null  -> Comprova si el camp amb id=id(field) està ocult o no. Per saber si l'ha de comprovar.
+            error = true; //si està visible i està buit o <= 0 , dona error
+        }
+    });
 
-  });  
-
+    if (error) {
+        alert("All visible fields must be filled out with correct Units, Weight, and Dimensions and must be greater than zero."); 
+        event.preventDefault();
+    }
+  });
 
   
 </script>
