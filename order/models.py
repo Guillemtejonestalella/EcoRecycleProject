@@ -9,7 +9,7 @@ class Order(models.Model):
     ORDER_STATUS = (
         ("Pending aproval", "Pending aproval"),
         ("Accepted", "Accepted"),
-        ("Cancelled", "Cancelled")
+        ("Denied", "Denied")
     )
 
     OrderUser = models.ForeignKey(User, on_delete=models.CASCADE)   
