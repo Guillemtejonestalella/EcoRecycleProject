@@ -3,16 +3,13 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
 from order.models import Order
-from order.models import User
 
 @receiver(post_save, sender=Order)
 def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza els punts de l'usuari i envia correu de confirmacio.
-    if instance.OrderStatus == 'Accepted':
-        
+    if instance.OrderStatus == 'Accepted':        
         order = instance.OrderUser        
         order.profile.ProfilePoints += instance.OrderPoints
-        order.profile.save()   
-            
+        order.profile.save()               
 
         #Correu electronic automatic Acceptacio
         send_mail(
@@ -45,5 +42,5 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
             recipient_list=[order.email],
             fail_silently=False,
         )
-# em dona el id {order.user.username}
+
         
