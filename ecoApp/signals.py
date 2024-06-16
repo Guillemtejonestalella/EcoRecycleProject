@@ -7,22 +7,29 @@ from order.models import Order
 
 @receiver(post_save, sender=Order)
 def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza els punts de l'usuari i envia correu de confirmacio.
+    image_url = f"{settings.DOMAIN}{settings.MEDIA_URL}ecoApp/static/asstets/img/logoRedimensionat-transparent.png"
+        
     if instance.OrderStatus == 'Accepted':        
         order = instance.OrderUser        
         order.profile.ProfilePoints += instance.OrderPoints
         order.profile.save()     
 
-        message = (
-            f'Dear {order.username},\n\n'
-            f'Your request has been accepted! You have been awarded {instance.OrderPoints} points.\n\n'
-            f'Thank you for your request!\n\n'
-            f'<img src="{settings.MEDIA_URL}ecoApp/static/asstets/img/logoRedimensionat-transparent.png" alt="Logo">'
-        )          
+         #Correu electronic automatic Acceptacio
 
-        #Correu electronic automatic Acceptacio
+        message = (
+            f'Dear {order.username},\n\n')    
+
+        html_message = (
+            f'<p>Dear {order.username},\n\n</p>'
+            f'<p>Your request has been accepted! You have been awarded {instance.OrderPoints} points.\n\n</p>'
+            f'<p>Thank you for your request!\n\n</p>'
+            f'<img src="https://github.com/Guillemtejonestalella/EcoRecycleProject/raw/main/logoRedimensionat-transparent.png" alt="Logo" style="max-width: 20%; margin-top: 30px;">'
+
+        )             
         send_mail(
             subject='Your request has been ACCEPTED',            
             message=message,
+            html_message=html_message,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[order.email],
             fail_silently=False,
@@ -30,17 +37,23 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
     elif instance.OrderStatus == 'Denied':
         order = instance.OrderUser
         order.profile.save()
-         #Correu electronic automatic Denegacio
+
+        #Correu electronic automatic Denegacio
 
         message = (
-            f'Dear {order.username},\n\n'
-            f'Your request has been denied!\n\n'
-            f'Resend your request!\n\n'
-            f'<img src="{settings.MEDIA_URL}ecoApp/static/asstets/img/logoRedimensionat-transparent.png" alt="Logo">'
+            f'Dear {order.username},\n\n')
+
+        html_message = (
+            f'<p>Dear {order.username},\n\n</p>'
+            f'<p>Your request has been denied!\n\n</p>'
+            f'<p>Resend your request!\n\n</p>'
+            f'<img src="https://github.com/Guillemtejonestalella/EcoRecycleProject/raw/main/logoRedimensionat-transparent.png" alt="Logo" style="max-width: 20%; margin-top: 30px;">'
         )
+
         send_mail(
             subject='Your request has been DENIED',            
             message=message,
+            html_message=html_message,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[order.email],
             fail_silently=False,
@@ -49,7 +62,8 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
         
         order = instance.OrderUser
         order.profile.save()
-         #Correu electronic automatic Enviament 
+
+        #Correu electronic automatic Enviament 
 
         message= (f'Dear {order.username},\n\n')
 
@@ -57,7 +71,7 @@ def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza 
             f'<p>Dear {order.username},\n\n</p>'
             f'<p>Your request has been submitted successfully. Wait to receive the acceptance or denial email.\n\n</p>'
             f'<p>Thank you for your request!\n\n</p>'
-            f'<img src="{settings.MEDIA_URL}ecoApp/static/assets/img/logoRedimensionat-transparent.png" alt="Logo">'
+            f'<img src="https://github.com/Guillemtejonestalella/EcoRecycleProject/raw/main/logoRedimensionat-transparent.png" alt="Logo" style="max-width: 20%; margin-top: 30px;">'
         )
         
         send_mail(
