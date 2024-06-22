@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+#urls de la web, relaciona paths amb els templates i el backend
 urlpatterns = [   
     path('', views.index, name='index'),
     path('aboutus', views.aboutus, name='aboutus'),

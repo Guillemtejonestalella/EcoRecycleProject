@@ -47,12 +47,10 @@ INSTALLED_APPS = [
     'profiles', 
     'order', 
     'orderline'
-    
 
-    
 ]
 
-
+# assignacio de rutes predefinides 
 LOGIN_REDIRECT_URL = '/products'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
@@ -72,6 +70,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ecorecycle.urls'
 
+# Assignacio directori dels templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -94,9 +93,11 @@ WSGI_APPLICATION = 'ecorecycle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+# Connexio amb la BD
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', #cambiar BD
+        'ENGINE': 'django.db.backends.postgresql', 
         'NAME': 'ecorecycleBD',
         'USER': 'postgres',
         'PASSWORD': 'Caramelo888',
@@ -136,15 +137,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-# STATIC_URL = 'ecoApp/static/'
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
-# MEDIA_URL = '/img/'
-
 DOMAIN = 'http://localhost:8000'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
@@ -152,7 +144,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-# enviar correo electronico de confirmacion
+# enviar correo electronico de confirmacion (configuracio del host que envia el mail automatitzat "correu EcoRecycle")
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

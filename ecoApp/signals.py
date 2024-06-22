@@ -7,8 +7,8 @@ from order.models import Order
 
 @receiver(post_save, sender=Order)
 def update_user_points_and_send_email(sender, instance, **kwargs):  #Actualitza els punts de l'usuari i envia correu de confirmacio.
-    image_url = f"{settings.DOMAIN}{settings.MEDIA_URL}ecoApp/static/asstets/img/logoRedimensionat-transparent.png"
-        
+            
+    # Creacio dels missatges automatitzats en funcio del canvi de l'estat de la sol·licitud d'usuari (mateix missatge amb diferent info en funcio de l'estat)
     if instance.OrderStatus == 'Accepted':        
         order = instance.OrderUser        
         order.profile.ProfilePoints += instance.OrderPoints
