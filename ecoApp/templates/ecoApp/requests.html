@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 
+<!-- missatges inicials -->
 <div class="initial-content" style="margin-top: 60px;"> 
     <h2>REQUESTS IN PROGRESS</h2>
     <div class="welcome-user">
@@ -14,7 +15,7 @@
     </div>  
 </div>
 
-
+<!-- cracio de les "cards" dels items afegits en la pagina products (en funcio de la categoria de l'item, es mostra una info o altre) -->
 {% if session_items %}
 <div class="row justify-content-center mt-4">
     <div class="col-md-7">   
@@ -22,6 +23,7 @@
             <div class="col-md-9">
                 {% for item in session_items %}
                     <div class="request-container mb-4">
+                        <!-- en cas que sigui un dispositiu electrònic: -->
                         {% if item.category == 'Electronic device' %}
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
@@ -49,7 +51,8 @@
                                 </div>                                
                             </div>                            
                         {% endif %}
-
+                        
+                        <!-- en cas que sigui un electrodomestic: -->
                         {% if item.category == 'Appliance' %}
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
@@ -80,7 +83,8 @@
                             </div>
                             
                         {% endif %}
-
+                        
+                        <!-- en cas que sigui un moble: -->
                         {% if item.category == 'Furniture' %}
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
@@ -110,7 +114,8 @@
                             </div>                            
                         {% endif %}
 
-                        {% if item.category == 'Plastic' or item.category == 'Glass' or item.category == 'Metal' or item.category == 'Cardboard' %}  
+                        <!-- en cas que sigui un material: -->
+                        {% if item.category == 'Plastic' or item.category == 'Glass' or item.category == 'Metal' or item.category == 'Cardboard' %}   
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
                                     <h2 class="card-title mb-4">{{ item.name }}</h2>
@@ -136,7 +141,7 @@
                             </div>        
                         {% endif %}
 
-
+                        <!-- en cas que sigui una joguina: -->
                         {% if item.category == 'Toys' %}   
                             <div class="requests-cards" data-index="{{ forloop.counter0 }}">
                                 <div class="card-body">
@@ -168,6 +173,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Creació del resum de tota la sol·licitud (part esquerra de la pantalla) seleccio d'opcions de recollida dels items -->
     <div class="col-md-3 ">        
         <div class="total-requests-card mb-4 ">
             <form id="form-request" method="post" action="{% url 'create_order' %}">
@@ -175,7 +182,9 @@
                 <h2>Total Request</h2>
                 <div class="card-body">   
                     <input type="hidden" id="total-points-input" name="total_points">             
-                    <p>Total Points: <span id="total-points" class="points-total">0</span></p>                
+                    <p>Total Points: <span id="total-points" class="points-total">0</span></p>      
+                    
+                    <!-- seleccio opcions de recollida dels items -->
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="home-delivery" name="home_pickup" onchange="toggleCheckbox('home-delivery', 'pickup-point'); homePickup()">
                         <label class="form-check-label" for="home-delivery">Home pickup</label>
@@ -185,7 +194,7 @@
                         <label class="form-check-label" for="pickup-point">Select delivery point</label>
                     </div>           
                     
-                    
+                    <!-- adreces de punts de recullida -->
                     <div id="pickup-list" style="display: none;">
                         <div class="form-group">
                             <br>
@@ -198,7 +207,7 @@
                             <br>
                         </div>
                     </div>                 
-
+                    <!-- seleccio de data de recollida a domicili -->
                     <div id="date-input-container" style="display: none;">
                         <br><br>
                         <label for="pickup-date">Select pickup date:</label>
@@ -209,7 +218,6 @@
                         <input type="text" id="pickup-address" name="delivery_address" class="custom-date-input">
                     </div>
 
-
                     <button type="submit" class="btn btn-primary mt-2" id="send-request-btn">Send Request</button>
                 </div>  
             </form>
@@ -218,6 +226,7 @@
     </div>    
 </div>
 {% else %}
+    <!-- en cas que no tingui cap request en progres -->
     <div class="alert alert-warning alert-dismissible show" role="alert" style="width: 25vw !important; margin-left: 30px !important; margin-right: -15px !important; animation: fade-up 0.7s;">
         You haven't made requests yet.       
     </div>
@@ -255,6 +264,7 @@
     </div>
   </div>
 
+<!-- estil de la pagina requests -->
 <style>
     .custom-date-input {
         padding: 10px;
@@ -263,15 +273,12 @@
         font-size: 16px;   
         background-color: white;
         color: black;     
-    }
-    
+    }    
     .custom-date-input:focus {
         border-color: #007bff;
         outline: none;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
     }
-
-
 </style>
 
 <script> 
@@ -319,7 +326,7 @@
         session.puntos = totalPuntos;   //es guarden els punts totals a la sesio d'usuari     
     }               
     
-    //Mostra els caps determinats en funció del checkbox seleccionat:
+    //Mostra els camps configurables determinats en funció del checkbox seleccionat:
     function homePickup() {
         var checkBox = document.getElementById('home-delivery');
         var dateInputContainer = document.getElementById('date-input-container');
@@ -331,8 +338,7 @@
         } else {
             dateInputContainer.style.display = 'none';
         }
-    }
-    
+    }    
     
     //Controla els dies disponibles per seleccionar en cas que sigui una recollida a casa. (Dies anteriors al dia actual no es poden seleccionar i tampoc els caps de setmana)
     flatpickr("#pickup-date", {
@@ -345,7 +351,7 @@
         dateFormat: "Y-m-d",
     });
     
-    //Mostra els caps determinats en funció del checkbox seleccionat:
+    //Mostra els camps configurables  determinats en funció del checkbox seleccionat:
     function pickUpPoint() {
         var checkBox = document.getElementById('pickup-point');
         var pickUpList = document.getElementById('pickup-list');
@@ -382,6 +388,7 @@
         const pickupPointChecked = document.getElementById('pickup-point').checked;
         
         if (!homeDeliveryChecked && !pickupPointChecked) {
+            // mostra alarma dient que falta seleccionar una opcio de recollida
             alert("Please select at least one delivery option.");
             event.preventDefault(); 
             return; 
@@ -407,7 +414,6 @@
             event.preventDefault();
         }
     });
-
 
 </script>
 

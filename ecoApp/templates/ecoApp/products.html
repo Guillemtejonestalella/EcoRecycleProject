@@ -28,7 +28,6 @@
 <div class="products-div">
     <div class="row">
 
-
         <!--Mostra el menu esquerra de filtre per categories (i l'opcio "Clear filters")-->
         <div class="col-2">   
           <div class="list-group">
@@ -78,6 +77,7 @@
           </div>
         </div>   
 
+        <!-- estil de la pàgina products -->
         <style>
           .card {
             display: flex;
@@ -108,8 +108,7 @@
           .select-button{
             width: 100%;           
 
-          }                
-          
+          }                   
           .material-symbols-outlined {
             font-variation-settings:
             'FILL' 0,
@@ -117,8 +116,6 @@
             'GRAD' 0,
             'opsz' 24
           }
-
-
         </style>
       </div>  
 </div>
@@ -209,15 +206,16 @@
                 </div>
                   
               {% else %}
+              <!-- si l'usuari no esta logejat, no deixa configurar ni seleccionar cap item -->
                   <p>You need to be logged in to view this page.</p> 
               {% endif %}
           </div>
         </div>
 
+        <!-- botons del modal per tancar o afegir item -->
         <div class="modal-footer">
           <form id="itemForm" method="post" action="{% url 'requests' %}">
             {% csrf_token %}
-
             <input type="hidden" id="itemData" name="item_data">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary" id="addItemButton">Add Item</button>  
@@ -271,7 +269,7 @@
 <!--Aquest script l'utilizo per passar la informacio de l'item que hem seleccionat cap al modal. Ja que sino desde el modal no puc accedir-->
 <script>
 
-  //Assignacio de variables en funcio del id de l'item, amagar camps en funcio de la categpria i creació d'estructura de dades que es guarda.
+  //Assignacio de variables en funcio del id de l'item, amagar camps en funcio de la categpria i creació d'estructura de dades que es guarda a la sessió d'usuari.
   $(document).ready(function(){
       //visualització dels menus desplegables i assignació de variables en funció del "id"
       $('.select-button').click(function(){
@@ -292,6 +290,7 @@
           
           $('.form-select').empty(); //es buida el contingut del select
          
+          // creació del seleccionable de la marca
           $.each(itemBrand, function(index, value) { //omplo el select amb les opcions de la llista nova              
               value = value.replace(/^'|'$/g, ''); //torno a eliminar ''
               $('.form-select').append('<option>' + value.trim() + '</option>');  //afegeixo les opcions en els selects amb class = .form-select  (La llista ja esta creada correctament)
@@ -304,7 +303,6 @@
           } else {
               $('#brand-div').show();
           }
-
 
           if (itemCategory === 'Electronic device') {
               $('#dimension-div').hide();
@@ -415,7 +413,6 @@
           $(this).val(1); 
         }
       });      
-
         
       $('#width').on('change', function() {
         var widthValue = parseFloat($(this).val());
@@ -424,14 +421,12 @@
         }
       });
 
-
       $('#depth').on('change', function() {
         var depthValue = parseFloat($(this).val());
         if (depthValue < 1) {
           $(this).val(1); 
         }
       });
-
 
       $('#weight').on('change', function() {
         var weightValue = parseFloat($(this).val());
@@ -441,7 +436,7 @@
       });
   });
 
-  //comprova si els camps del modal actual estan omplerts correctament (que siguin valids per a enviar-los)
+  //comprova si els camps del modal actual estan omplerts correctament (que siguin valids per a enviar-los "no nulls")
   document.getElementById('addItemButton').addEventListener('click', function(event) {
     const fields = [ //possibles camps a comprovar
         'itemUnits',

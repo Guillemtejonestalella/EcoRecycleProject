@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 
+<!-- missatges inicials de la pagina request history -->
 <div class="initial-content" style="margin-top: 60px;"> 
     <h2>REQUESTS HISTORY</h2>
     <div class="welcome-user">
@@ -14,7 +15,9 @@
     </div>  
 </div>
 
+<!-- si l'usuari ha realitzat alguna solicitud (es mira a la BD si té solicituds assignades) -->
 {% if user_requests %}
+<!-- creacio de la taula que representa totes les sol·licituds que ha fet l'usuari -->
     <div class="table-container">
         <table class="table table-striped">
             <thead>
@@ -31,6 +34,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- per a cada sol·licitud -->
                 {% for request in user_requests %}
                 <tr>
                     <td>{{ request.OrderCreationDate }}</td> 
@@ -48,6 +52,7 @@
                     <td style="font-weight: bold;"><strong>{{ request.OrderStatus }}</strong></td>
                     {% endif %}
 
+                    <!-- detalls per mostrar les caracteristiques de la sol·licitud (items que hi han a la sol·licitud i les seves caracteristiques) -->
                     <td class="align-middle">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#orderlines-{{ request.id }}" aria-expanded="false" aria-controls="orderlines-{{ request.id }}">
                             Show Details
@@ -55,6 +60,7 @@
                     </td>
                 </tr>
                 <tr class="collapse" id="orderlines-{{ request.id }}">
+                    <!-- caracteristiques dels items dins de la sol·licitud general (caracteristiques dels OrderLines) -->
                     <td colspan="9">
                         <table class="table">
                             <thead>
@@ -128,7 +134,7 @@
     </div>
         
     
-
+    <!-- estil de la pagins requestHistory -->
     <style>
         .table-container table td, .table-container table th {
             vertical-align: middle;
@@ -136,6 +142,7 @@
     </style>
         
 {% else %}
+    <!-- en cas que no hagi fet mai cap sol·licitud mostra un missatge d'alerta -->
     <div class="alert alert-warning alert-dismissible show" role="alert" style="width: 25vw !important; margin-left: 30px !important; margin-right: -15px !important; animation: fade-up 0.7s;">
         You don't have requests yet.       
     </div>

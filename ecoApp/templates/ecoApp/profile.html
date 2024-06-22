@@ -4,7 +4,6 @@
 
 {% load crispy_forms_tags %}
 
-
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="loginRegister-container">
@@ -21,8 +20,7 @@
                             {% for message in messages %}
                             <div style="margin-top: 30px;">
                                 <h4 {% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align: center; color:#2e6c2596;">{{ message }}</h4>
-                            </div>
-                               
+                            </div>                               
                             {% endfor %}                            
                         {% endif %}
                     </table>
@@ -33,32 +31,5 @@
 </div> 
 
 {% endblock %}
-
-
-
-        <!-- {% if request.user.is_authenticated %}
-        Username
-        <div class="form-floating mb-3">
-            <input class="form-control" placeholder="Username" id="floatingInputDisabled" disabled  ></input>
-            <label for="floatingInputDisabled">{{ request.user.username }}</label>
-        </div>
-        First name
-        <div class="form-floating mb-3">
-            <input class="form-control" placeholder="First name" id="floatingTextareaDisabled" disabled></input>
-            <label for="floatingTextareaDisabled">{{ request.user.first_name }}</label>
-        </div>
-        Last name
-        <div class="form-floating mb-3">
-            <input class="form-control" placeholder="Last name" id="floatingTextareaDisabled" disabled></input>
-            <label for="floatingTextareaDisabled">{{ request.user.last_name }}</label>
-        </div>
-        Email
-        <div class="form-floating mb-3">
-            <input class="form-control" placeholder="Email" id="floatingTextareaDisabled" disabled></input>
-            <label for="floatingTextareaDisabled">{{ request.user.email }}</label>
-        </div> 
-        {% else %}
-            <p>No hay un usuario autenticado actualmente.</p>
-        {% endif %}                      -->
 
 

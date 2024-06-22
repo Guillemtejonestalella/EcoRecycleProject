@@ -1,11 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+  <!-- fitxer base de tota la pagina web (es crida aquest fitxer desde els altres menus) -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoRecycle</title>
 
+    <!-- llibreries utilitzades -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,16 +22,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-
 </head>
 <body>  
   <div class="body-class">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  
  
   {% load crispy_forms_tags %} 
-
-
+  <!-- barra de navegacio de la web -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-color fixed-top">
       <div class="container-fluid">                
         <img src="/media/ecoApp/static/asstets/img/logoRedimensionat-transparent.png" style="width: 100px; height: 60px;">
@@ -60,17 +59,15 @@
           </ul>
           
           {% if request.user.is_authenticated %}          
-            
+            <!-- en cas que l'usuari estigui loggejat, es mostren nous elements a la barra de navegacio (nom d'usuari, punts , perfil i menus per realizar sol·licituds) -->
             
             <div class="account-name">
               <h4>{{user}}</h4>  
             </div>
 
-            <div class="">
-              <!-- rgba(47, 79, 79, 0.74) -->
+            <div class="">              
               <h4 style="color: rgba(36, 66, 52, 0.74); font-weight: bold; padding-right: 10px;">{{ user.profile.ProfilePoints }} Points</h4>  
-            </div>
-            
+            </div>            
             
             <div class="dropdown">
                
@@ -90,27 +87,23 @@
                     <div class="d-flex align-items-center">
                         LogOut <span class="material-icons ms-2">logout</span>
                     </div>
-                  </a>
-                
+                  </a>                
                   <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
                     {% csrf_token %}
                   </form>                  
-                                          
-                </li>
-                
+                </li>                
               </ul>
             </div>                                
             
           {% else %}
+          <!-- mostra botons d'inici de sessio i registre en cas que l usuari no estigui loggejat -->
             <form method="GET" action="{% url 'login' %}">
               <button class="btn btn-success shadow" type="submit">Login</button>
             </form>
             <form method="GET" action="{% url 'register' %}">
                 <button class="btn btn-success ms-2 shadow" type="submit">Register</button>
-            </form>
-        
+            </form>        
           {% endif %} 
-
         </div>
       </div>
     </nav>
@@ -119,8 +112,8 @@
   
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   
-
   </div>
+  <!-- footer de la web (es conserva per a tots els menus (sempre apareix)) -->
   <footer class="footer">
     <div class="container">
         <div class="row">
@@ -145,7 +138,6 @@
         </div>
     </div>
   </footer>   
-</body>
-  
+</body>  
   
 </html>
