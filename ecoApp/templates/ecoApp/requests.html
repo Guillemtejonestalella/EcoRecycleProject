@@ -174,7 +174,7 @@
         </div>
     </div>
 
-    <!-- Creació del resum de tota la sol·licitud (part esquerra de la pantalla) seleccio d'opcions de recollida dels items -->
+    <!-- Creació del resum de tota la sol·licitud (part dreta de la pantalla) seleccio d'opcions de recollida dels items -->
     <div class="col-md-3 ">        
         <div class="total-requests-card mb-4 ">
             <form id="form-request" method="post" action="{% url 'create_order' %}">
@@ -226,7 +226,7 @@
     </div>    
 </div>
 {% else %}
-    <!-- en cas que no tingui cap request en progres -->
+    <!-- en cas que no tingui cap request en progres missatge d'alerta-->
     <div class="alert alert-warning alert-dismissible show" role="alert" style="width: 25vw !important; margin-left: 30px !important; margin-right: -15px !important; animation: fade-up 0.7s;">
         You haven't made requests yet.       
     </div>
@@ -303,15 +303,15 @@
             elementosP.forEach(function(elemento) {  
                 if (isMaterial) { //si es un material, es calcules els punts de l'item en funció del pes i els punts de la categoria (extracció del pes)
                     if (elemento.textContent.includes("Weight")) {
-                        unidades = parseInt(elemento.textContent.split(":")[1].trim());
+                        unidades = parseInt(elemento.textContent.split(":")[1].trim()); //agafa el valor que esta seguit dels ":" (en aquest cas del Weight)
                     }
                 } else { //si no es un material, es tenen en compte les unitats i els punts de la categoria (extracció de les unitats)
                     if (elemento.textContent.includes("Units")) {
-                        unidades = parseInt(elemento.textContent.split(":")[1].trim());
+                        unidades = parseInt(elemento.textContent.split(":")[1].trim()); //agafa el valor que esta seguit dels ":" (en aquest cas del Unitats)
                     }
                 } //extracció dels punts de la categoria
                 if (elemento.textContent.includes("Points")) {
-                    puntos = parseInt(elemento.textContent.split(":")[1].trim());
+                    puntos = parseInt(elemento.textContent.split(":")[1].trim()); //agafa el valor que esta seguit dels ":" (en aquest cas de points)
                 }
             });
 
@@ -340,7 +340,7 @@
         }
     }    
     
-    //Controla els dies disponibles per seleccionar en cas que sigui una recollida a casa. (Dies anteriors al dia actual no es poden seleccionar i tampoc els caps de setmana)
+    //Controla els dies disponibles per seleccionar al calendari en cas que sigui una recollida a casa. (Dies anteriors al dia actual no es poden seleccionar i tampoc els caps de setmana)
     flatpickr("#pickup-date", {
         minDate: "today",
         disable: [
@@ -351,7 +351,7 @@
         dateFormat: "Y-m-d",
     });
     
-    //Mostra els camps configurables  determinats en funció del checkbox seleccionat:
+    //Mostra els camps configurables determinats en funció del checkbox seleccionat:
     function pickUpPoint() {
         var checkBox = document.getElementById('pickup-point');
         var pickUpList = document.getElementById('pickup-list');

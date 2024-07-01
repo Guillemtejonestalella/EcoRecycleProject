@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'ecorecycle.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# Connexio amb la BD
+# Connexio amb la BD postgreSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', 

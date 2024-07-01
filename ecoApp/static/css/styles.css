@@ -66,8 +66,7 @@ body {
 }
 
 .navbar-color {
-    background-color:#7e9772 !important; 
-    /* background-image: url('../assets/img/navBarImage.jpg'); */    
+    background-color:#7e9772 !important;     
 }
 
 .navbar-color a:not(.dropdown-item) {    
@@ -156,14 +155,13 @@ body {
     background-color: rgba(255, 255, 255, 0.8); 
 }
 
-.table-container {
-    /* overflow-x: auto; Agrega desplazamiento horizontal si la tabla es más ancha que el contenedor */
+.table-container {    
     animation: fade-up 0.7s;
     max-width: 2000px;
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    margin: 50px auto 0 auto; /* Esto centra el div horizontalmente */
+    margin: 50px auto 0 auto; 
     background-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -187,8 +185,7 @@ body {
     animation: fade-up 0.7s;    
     padding: 20px; 
     border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    /* margin-top: 122px; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);    
     background-color: rgba(255, 255, 255, 0.8);
     
 }
@@ -250,8 +247,6 @@ body {
     position: sticky;
     top: 100px; 
     height: 30vh;    
-    /* background-color: rgb(191 209 159) !important; */
-    /* padding: 30px; */
     border-radius: 0px;   
 }
 
@@ -301,15 +296,12 @@ body {
     font-size: 16px; 
     font-weight: bold;  
     margin-right: 4px;
-    cursor: pointer;
-    /* text-decoration: underline; */
-    
+    cursor: pointer;      
 }
 
 
 .info-content p:hover {    
-    color: rgba(87, 131, 95, 0.74);  
-    
+    color: rgba(87, 131, 95, 0.74);      
 }
 
 
